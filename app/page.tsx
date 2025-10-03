@@ -3,31 +3,26 @@ import { Calendar, BookOpen, Heart, CircleHelp as HelpCircle, Mail, Phone, MapPi
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
+import { mcGet } from '@/lib/microcms';
+import type { ListResponse, News } from '@/lib/schema';
 
-export default function Home() {
-  const newsItems = [
-    {
-      id: 1,
-      date: '2024.10.01',
-      category: 'お知らせ',
-      title: '令和7年度 入園説明会のご案内',
-      description: '来年度の入園説明会を11月15日(金)に開催いたします。事前予約制となっております。',
-    },
-    {
-      id: 2,
-      date: '2024.09.28',
-      category: 'イベント',
-      title: '運動会を開催しました',
-      description: '秋晴れの空の下、運動会を開催しました。子どもたちの笑顔がたくさん見られました。',
-    },
-    {
-      id: 3,
-      date: '2024.09.15',
-      category: '子育て支援',
-      title: '未就園児クラス「たんぽぽ組」募集中',
-      description: '2歳児対象の未就園児クラスの参加者を募集しています。親子で楽しく過ごしましょう。',
-    },
-  ];
+export default async function Home() {
+  let latest: { id: string; date: string; category?: string; title: string; description?: string }[] = [];
+  try {
+    const data = await mcGet<ListResponse<News>>('news', { orders: '-date', limit: 3 });
+    latest = data.contents.map((n) => ({
+      id: n.id,
+      date: n.date,
+      category: n.category,
+      title: n.title,
+    }));
+  } catch (e) {
+    latest = [
+      { id: '1', date: '2024-10-01', category: 'お知らせ', title: 'ダミー：入園説明会のご案内' },
+      { id: '2', date: '2024-09-28', category: 'イベント', title: 'ダミー：運動会を開催しました' },
+      { id: '3', date: '2024-09-15', category: '子育て支援', title: 'ダミー：未就園児クラス募集中' },
+    ];
+  }
 
   const mainNavCards = [
     {
@@ -97,7 +92,7 @@ export default function Home() {
             </Button>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {newsItems.map((news) => (
+            {latest.map((news) => (
               <Card key={news.id} className="hover:shadow-lg transition-shadow cursor-pointer border-sky-100">
                 <CardHeader>
                   <div className="flex items-center justify-between mb-2">
