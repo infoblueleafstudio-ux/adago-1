@@ -6,7 +6,7 @@ export async function POST(request: NextRequest) {
     const { name, email, emailConfirm, phone, message } = body;
 
     // バリデーション
-    if (!name || !email || !phone || !message) {
+    if (!name || !email || !message) {
       return NextResponse.json(
         { error: '必須フィールドが不足しています' },
         { status: 400 }
@@ -27,17 +27,43 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // 開発環境ではコンソールログに出力
+    // Formrunエンドポイントに送信
+    const formrunEndpoint = process.env.FORMRUN_ENDPOINT;
+    
+    if (formrunEndpoint) {
+      try {
+        const formrunResponse = await fetch(formrunEndpoint, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            name,
+            email,
+            phone: phone || '',
+            message,
+            timestamp: new Date().toISOString(),
+          }),
+        });
+
+        if (!formrunResponse.ok) {
+          console.error('Formrun submission failed:', formrunResponse.status);
+          // Formrun送信に失敗しても、ローカルログは出力して成功レスポンスを返す
+        }
+      } catch (formrunError) {
+        console.error('Formrun submission error:', formrunError);
+        // Formrun送信に失敗しても、ローカルログは出力して成功レスポンスを返す
+      }
+    }
+
+    // ローカルログ出力（開発・本番共通）
     console.log('Contact form submission:', {
       name,
       email,
-      phone,
+      phone: phone || '',
       message,
       timestamp: new Date().toISOString(),
     });
-
-    // 本番環境では外部サービスに送信
-    // await submitToFormService({ name, email, phone, message });
 
     return NextResponse.json(
       { message: 'お問い合わせを受け付けました' },

@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -10,6 +11,7 @@ import { Alert, AlertDescription } from '@/components/ui/alert';
 import { Loader2, CheckCircle, AlertCircle } from 'lucide-react';
 
 export default function ContactForm() {
+  const router = useRouter();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -58,14 +60,8 @@ export default function ContactForm() {
       });
 
       if (response.ok) {
-        setStatus('success');
-        setFormData({
-          name: '',
-          email: '',
-          emailConfirm: '',
-          phone: '',
-          message: '',
-        });
+        // 送信成功時に /thanks ページに遷移
+        router.push('/thanks');
       } else {
         throw new Error('送信に失敗しました');
       }
@@ -75,23 +71,6 @@ export default function ContactForm() {
     }
   };
 
-  if (status === 'success') {
-    return (
-      <Card className="max-w-2xl mx-auto">
-        <CardContent className="p-8 text-center">
-          <CheckCircle className="w-16 h-16 text-green-500 mx-auto mb-4" />
-          <h2 className="text-2xl font-bold text-gray-900 mb-2">送信完了</h2>
-          <p className="text-gray-600 mb-6">
-            お問い合わせありがとうございます。<br />
-            3営業日以内にご連絡いたします。
-          </p>
-          <Button onClick={() => setStatus('idle')} variant="outline">
-            新しいお問い合わせを送信
-          </Button>
-        </CardContent>
-      </Card>
-    );
-  }
 
   return (
     <Card className="max-w-2xl mx-auto">
