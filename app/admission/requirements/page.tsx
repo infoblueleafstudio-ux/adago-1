@@ -1,6 +1,7 @@
 import PageHeader from '@/components/templates/PageHeader';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Calendar, Users, FileText, Info } from 'lucide-react';
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { Calendar, Users, FileText, Info, ExternalLink, Download } from 'lucide-react';
 
 export default function RequirementsPage() {
   return (
@@ -118,6 +119,50 @@ export default function RequirementsPage() {
                   園の見学は随時受け付けております（要予約）
                 </li>
               </ul>
+            </CardContent>
+          </Card>
+
+          {/* 外部リンクセクション */}
+          <Card className="border-green-100">
+            <CardHeader>
+              <div className="flex items-center space-x-3">
+                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-green-400 to-green-500 flex items-center justify-center">
+                  <ExternalLink className="w-6 h-6 text-white" />
+                </div>
+                <div>
+                  <CardTitle className="text-2xl">区役所 子育て支援課</CardTitle>
+                  <CardDescription>詳細な募集要項と申請書類</CardDescription>
+                </div>
+              </div>
+            </CardHeader>
+            <CardContent>
+              <p className="text-gray-600 mb-4">
+                入園に関する詳細な募集要項、申請書類のダウンロード、オンライン申請などが可能です。
+              </p>
+              <div className="space-y-3">
+                <Button asChild className="w-full">
+                  <a
+                    href="https://www.city.example.com/kosodate/admission"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-center"
+                  >
+                    <FileText className="mr-2 w-4 h-4" />
+                    詳細な募集要項を見る
+                  </a>
+                </Button>
+                <Button asChild variant="outline" className="w-full">
+                  <a
+                    href="https://www.city.example.com/kosodate/forms"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-center"
+                  >
+                    <Download className="mr-2 w-4 h-4" />
+                    申請書類をダウンロード
+                  </a>
+                </Button>
+              </div>
             </CardContent>
           </Card>
         </div>
