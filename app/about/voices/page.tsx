@@ -26,7 +26,7 @@ export default async function VoicesPage() {
     <div>
       <PageHeader title="卒園生・保護者の声" description="愛宕幼稚園での思い出をお聞かせいただきました" />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <ListDetailLayout items={items} />
+        <ListDetailLayout items={items} basePath="/about/voices" />
       </div>
     </div>
   );

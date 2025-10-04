@@ -26,7 +26,7 @@ export default async function TeachersPage() {
     <div>
       <PageHeader title="先生紹介" description="経験豊富な先生方が子どもたちをサポートします" />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <ListDetailLayout items={items} />
+        <ListDetailLayout items={items} basePath="/education/teachers" />
       </div>
     </div>
   );

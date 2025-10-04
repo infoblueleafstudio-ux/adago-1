@@ -1,13 +1,14 @@
 import Link from 'next/link';
-import { Calendar, BookOpen, Heart, CircleHelp as HelpCircle, Mail, Phone, MapPin, ChevronRight } from 'lucide-react';
+import { Calendar, BookOpen, Heart, CircleHelp as HelpCircle, ChevronRight } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
 import { mcGet } from '@/lib/microcms';
 import type { ListResponse, News } from '@/lib/schema';
+import CardComponent from '@/components/common/Card';
+import CTA from '@/components/common/CTA';
 
 export default async function Home() {
-  let latest: { id: string; date: string; category?: string; title: string; description?: string }[] = [];
+  let latest: { id: string; date: string; category?: string; title: string; description?: string; image?: string }[] = [];
   try {
     const data = await mcGet<ListResponse<News>>('news', { orders: '-date', limit: 3 });
     latest = data.contents.map((n) => ({
@@ -15,12 +16,14 @@ export default async function Home() {
       date: n.date,
       category: n.category,
       title: n.title,
+      description: n.body?.slice(0, 120) ?? '',
+      image: n.image?.url,
     }));
   } catch (e) {
     latest = [
-      { id: '1', date: '2024-10-01', category: 'お知らせ', title: 'ダミー：入園説明会のご案内' },
-      { id: '2', date: '2024-09-28', category: 'イベント', title: 'ダミー：運動会を開催しました' },
-      { id: '3', date: '2024-09-15', category: '子育て支援', title: 'ダミー：未就園児クラス募集中' },
+      { id: '1', date: '2024-10-01', category: 'お知らせ', title: 'ダミー：入園説明会のご案内', description: 'ダミー本文' },
+      { id: '2', date: '2024-09-28', category: 'イベント', title: 'ダミー：運動会を開催しました', description: 'ダミー本文' },
+      { id: '3', date: '2024-09-15', category: '子育て支援', title: 'ダミー：未就園児クラス募集中', description: 'ダミー本文' },
     ];
   }
 
@@ -93,22 +96,19 @@ export default async function Home() {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {latest.map((news) => (
-              <Card key={news.id} className="hover:shadow-lg transition-shadow cursor-pointer border-sky-100">
-                <CardHeader>
-                  <div className="flex items-center justify-between mb-2">
-                    <Badge variant="secondary" className="bg-sky-100 text-sky-700">
-                      {news.category}
-                    </Badge>
-                    <span className="text-sm text-gray-500">{news.date}</span>
-                  </div>
-                  <CardTitle className="text-lg">{news.title}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <CardDescription className="text-gray-600 leading-relaxed">
-                    {news.description}
-                  </CardDescription>
-                </CardContent>
-              </Card>
+              <CardComponent
+                key={news.id}
+                item={{
+                  id: news.id,
+                  title: news.title,
+                  description: news.description || '',
+                  date: news.date,
+                  category: news.category,
+                  image: news.image,
+                  href: `/news/${news.id}`,
+                  alt: news.title
+                }}
+              />
             ))}
           </div>
         </div>
@@ -147,57 +147,7 @@ export default async function Home() {
 
       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <Card className="bg-gradient-to-br from-sky-500 to-blue-600 text-white border-0">
-            <CardContent className="p-8 md:p-12">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div>
-                  <h2 className="text-3xl font-bold mb-6">お問い合わせ</h2>
-                  <p className="text-sky-50 mb-8 leading-relaxed">
-                    ご質問やご相談がございましたら、お気軽にお問い合わせください。
-                    見学も随時受け付けております。
-                  </p>
-                  <div className="space-y-4">
-                    <div className="flex items-center">
-                      <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center mr-4">
-                        <Phone className="w-5 h-5" />
-                      </div>
-                      <div>
-                        <p className="text-sm text-sky-100">お電話でのお問い合わせ</p>
-                        <p className="text-2xl font-bold">03-1234-5678</p>
-                      </div>
-                    </div>
-                    <div className="flex items-center">
-                      <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center mr-4">
-                        <MapPin className="w-5 h-5" />
-                      </div>
-                      <div>
-                        <p className="text-sm text-sky-100">アクセス</p>
-                        <a
-                          href="https://www.google.com/maps"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-lg font-semibold hover:underline"
-                        >
-                          Google Mapで見る
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="flex flex-col justify-center space-y-4">
-                  <Button asChild size="lg" className="bg-white text-sky-600 hover:bg-sky-50 text-lg py-6">
-                    <Link href="/contact" className="flex items-center justify-center">
-                      <Mail className="mr-2 w-5 h-5" />
-                      お問い合わせフォーム
-                    </Link>
-                  </Button>
-                  <Button asChild size="lg" variant="outline" className="bg-transparent border-2 border-white text-white hover:bg-white/10 text-lg py-6">
-                    <Link href="/admission">入園案内を見る</Link>
-                  </Button>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
+          <CTA />
         </div>
       </section>
     </div>
