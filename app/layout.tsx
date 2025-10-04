@@ -21,14 +21,14 @@ export const metadata: Metadata = {
     address: false,
     telephone: false,
   },
-  metadataBase: new URL('https://atago-kdg.example.com'),
+  metadataBase: new URL(process.env.SITE_URL || 'https://atago-kdg.example.com'),
   alternates: {
     canonical: '/',
   },
   openGraph: {
     type: 'website',
     locale: 'ja_JP',
-    url: 'https://atago-kdg.example.com',
+    url: process.env.SITE_URL || 'https://atago-kdg.example.com',
     siteName: '愛宕幼稚園',
     title: '愛宕幼稚園 | ATAGO KINDERGARTEN',
     description: '子どもたちの笑顔があふれる幼稚園です。一人ひとりの個性を大切に、心身ともに健やかな成長をサポートします。',
@@ -59,7 +59,7 @@ export const metadata: Metadata = {
     },
   },
   verification: {
-    google: 'your-google-verification-code',
+    google: process.env.GOOGLE_VERIFICATION_CODE || 'your-google-verification-code',
   },
 };
 

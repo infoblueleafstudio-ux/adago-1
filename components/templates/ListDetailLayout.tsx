@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 
@@ -26,11 +27,14 @@ const ListDetailLayout = ({ items, basePath }: ListDetailLayoutProps) => {
         <Link key={item.id} href={basePath ? `${basePath}/${item.id}` : '#'}>
           <Card className="hover:shadow-lg transition-shadow cursor-pointer border-sky-100">
           {item.image && (
-            <div className="w-full h-48 bg-gradient-to-br from-sky-100 to-blue-100 rounded-t-lg overflow-hidden">
-              <div
-                className="w-full h-full bg-cover bg-center"
-                style={{ backgroundImage: `url(${item.image})` }}
-              ></div>
+            <div className="relative w-full h-48 rounded-t-lg overflow-hidden">
+              <Image
+                src={item.image}
+                alt={item.title}
+                fill
+                style={{ objectFit: 'cover' }}
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              />
             </div>
           )}
           <CardHeader>
