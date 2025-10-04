@@ -1,22 +1,16 @@
 import PageHeader from '@/components/templates/PageHeader';
-import ContactForm from '@/components/forms/ContactForm';
+import ContactForm from './ContactForm';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Phone, Mail, MapPin, Clock } from 'lucide-react';
-import { submitToFormService } from '@/lib/form-service';
-import type { FormSubmissionData } from '@/lib/form-service';
 
 export default function ContactPage() {
-  const handleFormSubmit = async (data: FormSubmissionData) => {
-    await submitToFormService(data);
-  };
-
   return (
     <div>
       <PageHeader title="お問い合わせ" description="ご質問やご相談はお気軽にお問い合わせください" />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           <div className="lg:col-span-2">
-            <ContactForm onSubmit={handleFormSubmit} />
+            <ContactForm />
           </div>
 
           <div className="space-y-6">
