@@ -1,5 +1,6 @@
 import { mcGet } from '@/lib/microcms';
 import type { ListResponse, News } from '@/lib/schema';
+import Image from 'next/image';
 
 type Params = { params: { id: string } };
 
@@ -36,8 +37,16 @@ export default async function NewsDetailPage({ params }: Params) {
       <h1>{item.title}</h1>
       <p className="text-sm text-gray-500">{item.date} {item.category && ` / ${item.category}`}</p>
       {item.image?.url && (
-        // eslint-disable-next-line @next/next/no-img-element
-        <img src={item.image.url} alt={item.title} width={item.image.width} height={item.image.height} />
+        <div className="relative w-full h-64 md:h-96 mb-6">
+          <Image
+            src={item.image.url}
+            alt={item.title}
+            fill
+            style={{ objectFit: 'cover' }}
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 60vw"
+            priority
+          />
+        </div>
       )}
       <div dangerouslySetInnerHTML={{ __html: item.body ?? '' }} />
     </article>

@@ -1,5 +1,6 @@
 import PageHeader from '@/components/templates/PageHeader';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import Image from 'next/image';
 
 export default function FacilitiesPage() {
   const facilities = [
@@ -42,11 +43,14 @@ export default function FacilitiesPage() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {facilities.map((facility, index) => (
             <Card key={index} className="border-sky-100 overflow-hidden hover:shadow-lg transition-shadow">
-              <div className="w-full h-48 bg-gradient-to-br from-sky-100 to-blue-100">
-                <div
-                  className="w-full h-full bg-cover bg-center"
-                  style={{ backgroundImage: `url(${facility.image})` }}
-                ></div>
+              <div className="relative w-full h-48">
+                <Image
+                  src={facility.image}
+                  alt={facility.title}
+                  fill
+                  style={{ objectFit: 'cover' }}
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                />
               </div>
               <CardHeader>
                 <CardTitle className="text-xl">{facility.title}</CardTitle>

@@ -1,0 +1,11 @@
+# *
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /api/
+
+# Host
+Host: https://atago-kdg.example.com
+
+# Sitemaps
+Sitemap: https://atago-kdg.example.com/sitemap.xml
