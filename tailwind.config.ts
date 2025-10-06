@@ -91,10 +91,33 @@ const config: Config = {
             height: '0',
           },
         },
+        'bounce-gentle': {
+          '0%, 20%, 50%, 80%, 100%': {
+            transform: 'translateY(0)',
+          },
+          '40%': {
+            transform: 'translateY(-10px)',
+          },
+          '60%': {
+            transform: 'translateY(-5px)',
+          },
+        },
+        'fade-in-up': {
+          '0%': {
+            opacity: '0',
+            transform: 'translateY(30px)',
+          },
+          '100%': {
+            opacity: '1',
+            transform: 'translateY(0)',
+          },
+        },
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
+        'bounce-gentle': 'bounce-gentle 2s ease-in-out infinite',
+        'fade-in-up': 'fade-in-up 1.2s ease-out',
       },
     },
   },
