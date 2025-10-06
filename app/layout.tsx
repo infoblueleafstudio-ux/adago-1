@@ -1,49 +1,53 @@
 import './globals.css';
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
+import { Noto_Sans_JP } from 'next/font/google';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 
-const inter = Inter({ subsets: ['latin'] });
+const notoSansJP = Noto_Sans_JP({ 
+  subsets: ['latin'],
+  weight: ['400', '500', '700'],
+  variable: '--font-noto-sans-jp'
+});
 
 export const metadata: Metadata = {
   title: {
-    default: '愛宕幼稚園 | ATAGO KINDERGARTEN',
-    template: '%s | 愛宕幼稚園',
+  default: 'こどもの森 幼稚園',
+    template: '%s | こどもの森 幼稚園',
   },
   description: '子どもたちの笑顔があふれる幼稚園です。一人ひとりの個性を大切に、心身ともに健やかな成長をサポートします。',
-  keywords: ['幼稚園', '愛宕幼稚園', '保育', '教育', '子育て', '東京都'],
-  authors: [{ name: '愛宕幼稚園' }],
-  creator: '愛宕幼稚園',
-  publisher: '愛宕幼稚園',
+  keywords: ['幼稚園', 'こどもの森 幼稚園', '保育', '教育', '子育て', '東京都'],
+  authors: [{ name: 'こどもの森 幼稚園' }],
+  creator: 'こどもの森 幼稚園',
+  publisher: 'こどもの森 幼稚園',
   formatDetection: {
     email: false,
     address: false,
     telephone: false,
   },
-  metadataBase: new URL(process.env.SITE_URL || 'https://atago-kdg.example.com'),
+  metadataBase: new URL(process.env.SITE_URL || 'https://kodomonomori-kdg.example.com'),
   alternates: {
     canonical: '/',
   },
   openGraph: {
     type: 'website',
     locale: 'ja_JP',
-    url: process.env.SITE_URL || 'https://atago-kdg.example.com',
-    siteName: '愛宕幼稚園',
-    title: '愛宕幼稚園 | ATAGO KINDERGARTEN',
+    url: process.env.SITE_URL || 'https://kodomonomori-kdg.example.com',
+    siteName: 'こどもの森 幼稚園',
+    title: 'こどもの森 幼稚園',
     description: '子どもたちの笑顔があふれる幼稚園です。一人ひとりの個性を大切に、心身ともに健やかな成長をサポートします。',
     images: [
       {
         url: '/ogp.jpg',
         width: 1200,
         height: 630,
-        alt: '愛宕幼稚園',
+        alt: 'こどもの森 幼稚園',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: '愛宕幼稚園 | ATAGO KINDERGARTEN',
+    title: 'こどもの森 幼稚園',
     description: '子どもたちの笑顔があふれる幼稚園です。一人ひとりの個性を大切に、心身ともに健やかな成長をサポートします。',
     images: ['/ogp.jpg'],
   },
@@ -70,7 +74,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ja">
-      <body className={inter.className}>
+      <body className={`${notoSansJP.className} bg-atago-bg text-atago-text`}>
         <Navigation />
         <main className="min-h-screen">{children}</main>
         <Footer />

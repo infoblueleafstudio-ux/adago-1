@@ -3,12 +3,14 @@ import type { Config } from 'tailwindcss';
 const config: Config = {
   darkMode: ['class'],
   content: [
-    './pages/**/*.{js,ts,jsx,tsx,mdx}',
-    './components/**/*.{js,ts,jsx,tsx,mdx}',
     './app/**/*.{js,ts,jsx,tsx,mdx}',
+    './components/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
     extend: {
+      fontFamily: {
+        sans: ['Noto Sans JP', 'sans-serif'],
+      },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic':
@@ -34,6 +36,8 @@ const config: Config = {
           DEFAULT: 'hsl(var(--primary))',
           foreground: 'hsl(var(--primary-foreground))',
         },
+        // hover用の明度を落としたプライマリ
+        primaryHover: 'hsl(var(--primary-hover))',
         secondary: {
           DEFAULT: 'hsl(var(--secondary))',
           foreground: 'hsl(var(--secondary-foreground))',
@@ -53,6 +57,15 @@ const config: Config = {
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',
         ring: 'hsl(var(--ring))',
+        // カスタムカラー（こどもの森 幼稚園風 - 温かいクリーム基調）
+        'atago-primary': '#f1c232', // メイン（黄）
+        'atago-accent': '#f6a623', // アクセント（オレンジ）
+        'atago-bg': '#fffdf8', // 背景（温かいクリーム）
+        'atago-text': '#4a3b2f', // テキスト（こげ茶）
+        'atago-muted': '#fdf5e6', // 柔らかい補助色
+        'atago-section': '#fffaf2', // セクション背景
+        'atago-blue': '#2b5c9e', // ブルー
+        'atago-light-blue': '#4a7bc8', // ライトブルー
         chart: {
           '1': 'hsl(var(--chart-1))',
           '2': 'hsl(var(--chart-2))',

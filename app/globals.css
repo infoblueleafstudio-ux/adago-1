@@ -1,28 +1,30 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222 47% 11%;
+    --background: 45 100% 98%; /* #fffdf8 - 温かいクリーム */
+    --foreground: 30 28% 22%; /* #4a3b2f - こげ茶 */
     --card: 0 0% 100%;
-    --card-foreground: 222 47% 11%;
+    --card-foreground: 30 28% 22%;
     --popover: 0 0% 100%;
-    --popover-foreground: 222 47% 11%;
-    --primary: 199 89% 48%;
+    --popover-foreground: 30 28% 22%;
+    --primary: 45 85% 54%; /* #f1c232 - メイン（黄） */
+    --primary-hover: 42 90% 48%; /* より深い黄 */
     --primary-foreground: 0 0% 100%;
-    --secondary: 210 40% 96%;
-    --secondary-foreground: 222 47% 11%;
-    --muted: 210 40% 96%;
-    --muted-foreground: 215 16% 47%;
-    --accent: 210 40% 96%;
-    --accent-foreground: 222 47% 11%;
+    --secondary: 45 100% 98%; /* #fffdf8 */
+    --secondary-foreground: 30 28% 22%;
+    --muted: 45 100% 96%; /* #fdf5e6 - 柔らかい補助色 */
+    --muted-foreground: 30 28% 22%;
+    --accent: 34 89% 55%; /* #f6a623 - アクセント（オレンジ） */
+    --accent-foreground: 0 0% 100%;
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 98%;
-    --border: 214 32% 91%;
-    --input: 214 32% 91%;
-    --ring: 199 89% 48%;
+    --border: 45 50% 92%;
+    --input: 45 50% 92%;
+    --ring: 45 85% 54%;
     --radius: 0.5rem;
   }
 }
@@ -31,17 +33,225 @@
   * {
     @apply border-border;
   }
+  
   body {
     @apply bg-background text-foreground antialiased;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 16px;
+    line-height: 1.8;
+    color: hsl(var(--foreground));
   }
 
   h1, h2, h3, h4, h5, h6 {
     @apply font-bold;
+    letter-spacing: -0.025em;
+    line-height: 1.4;
+    color: hsl(var(--foreground));
+  }
+
+  h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+  }
+
+  h2 {
+    font-size: 2rem;
+    font-weight: 700;
+  }
+
+  h3 {
+    font-size: 1.5rem;
+    font-weight: 500;
+  }
+
+  p {
+    line-height: 1.8;
+    letter-spacing: -0.01em;
+  }
+
+  a {
+    @apply text-primary transition-colors duration-300;
+    font-weight: 500;
+  }
+
+  a:hover {
+    color: hsl(var(--primary-hover));
   }
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+
+  /* アニメーション用ユーティリティ */
+  .fade-in-up {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  }
+
+  .fade-in-up.animate {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .fade-in {
+    opacity: 0;
+    transition: opacity 0.8s ease-out;
+  }
+
+  .fade-in.animate {
+    opacity: 1;
+  }
+
+  .slide-up {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+  }
+
+  .slide-up.animate {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ホバーエフェクト */
+  .hover-lift {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .hover-lift:hover {
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: 0 10px 25px rgba(43, 92, 158, 0.15);
+  }
+
+  /* ボタンスタイル（統一） */
+  .btn-primary {
+    @apply text-white font-semibold px-6 py-3 rounded-md transition-colors duration-300;
+    background-color: hsl(var(--primary));
+  }
+
+  .btn-primary:hover {
+    background-color: hsl(var(--primary-hover));
+  }
+
+  .btn-secondary {
+    @apply border-2 font-semibold px-6 py-3 rounded-md transition-colors duration-300;
+    border-color: hsl(var(--primary));
+    color: hsl(var(--foreground));
+  }
+
+  .btn-secondary:hover {
+    background-color: hsl(var(--muted));
+  }
+
+  /* セクション境界のなめらかなグラデーション */
+  .section-divider {
+    background: linear-gradient(180deg, 
+      hsl(var(--background)) 0%, 
+      hsl(var(--muted)) 50%, 
+      hsl(var(--background)) 100%);
+  }
+
+  .section-bg {
+    background-color: #fffaf2; /* セクション背景 */
+    box-shadow: 0 2px 8px rgba(241, 194, 50, 0.1);
+  }
+
+  /* ドロップダウン用フェードイン */
+  @keyframes fade-in {
+    0% {
+      opacity: 0;
+      transform: translateY(8px) scale(0.95);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+  .animate-fade-in {
+    animation: fade-in 0.25s ease-out forwards;
+  }
+
+  /* サブメニュー用フェードアップアニメーション */
+  @keyframes fade-up {
+    0% {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  .animate-fade-up {
+    animation: fade-up 0.3s ease-out forwards;
+  }
+
+  /* 下向きフェード（fadeInDown相当） */
+  @keyframes fade-in-down {
+    0% {
+      opacity: 0;
+      transform: translateY(-8px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  .animate-fade-in-down {
+    animation: fade-in-down 0.3s ease-out forwards;
+  }
+
+  /* スクロールバー非表示 */
+  .scrollbar-none {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  .scrollbar-none::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* ===== Motion Keyframes ===== */
+@keyframes fadeUp {
+  0% { opacity: 0; transform: translateY(12px) scale(.98); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+@keyframes float {
+  0% { transform: translateY(0) }
+  50% { transform: translateY(-10px) }
+  100% { transform: translateY(0) }
+}
+@keyframes drift {
+  0% { transform: translateX(0) rotate(0deg) }
+  50% { transform: translateX(6px) rotate(1.2deg) }
+  100% { transform: translateX(0) rotate(0deg) }
+}
+@keyframes bob {
+  0% { transform: translateY(0) }
+  50% { transform: translateY(6px) }
+  100% { transform: translateY(0) }
+}
+@keyframes slowSpin {
+  from { transform: rotate(0deg) }
+  to { transform: rotate(360deg) }
+}
+
+/* ===== Utilities ===== */
+.anim-fadeUp { animation: fadeUp .6s ease-out both; }
+.anim-fadeUp-delayed { animation: fadeUp .8s ease-out .12s both; }
+.anim-float { animation: float 6s ease-in-out infinite; }
+.anim-drift { animation: drift 8s ease-in-out infinite; }
+.anim-bob { animation: bob 7s ease-in-out infinite; }
+.anim-spin-slow { animation: slowSpin 18s linear infinite; }
+
+.motif-soft { opacity: .85; filter: drop-shadow(0 2px 4px rgba(0,0,0,.06)); }
+
+@media (prefers-reduced-motion: reduce) {
+  .anim-fadeUp, .anim-fadeUp-delayed, .anim-float, .anim-drift, .anim-bob, .anim-spin-slow {
+    animation: none !important;
   }
 }

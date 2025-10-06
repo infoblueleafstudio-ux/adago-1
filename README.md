@@ -1,4 +1,4 @@
-# 愛宕幼稚園 公式サイト
+# こどもの森 幼稚園 公式サイト
 
 Next.js 14 + Tailwind CSS + microCMS で構築された幼稚園の公式サイトです。
 
@@ -131,4 +131,4 @@ microCMS でコンテンツを管理できます。各コンテンツタイプ�
 
 ---
 
-© 2024 愛宕幼稚園. All rights reserved.
+© 2024 こどもの森 幼稚園. All rights reserved.

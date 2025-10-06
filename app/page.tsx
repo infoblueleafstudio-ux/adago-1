@@ -6,6 +6,10 @@ import { mcGet } from '@/lib/microcms';
 import type { ListResponse, News } from '@/lib/schema';
 import CardComponent from '@/components/common/Card';
 import CTA from '@/components/common/CTA';
+import AnimateOnScroll from '@/components/common/AnimateOnScroll';
+import Hero from './components/Hero';
+import StickyContact from './components/StickyContact';
+import SectionStrap from './components/SectionStrap';
 
 export default async function Home() {
   let latest: { id: string; date: string; category?: string; title: string; description?: string; image?: string }[] = [];
@@ -60,96 +64,101 @@ export default async function Home() {
 
   return (
     <div>
-      <section className="relative h-[600px] flex items-center justify-center bg-gradient-to-br from-sky-100 via-blue-50 to-indigo-100">
-        <div className="absolute inset-0 bg-[url('https://images.pexels.com/photos/8613089/pexels-photo-8613089.jpeg')] bg-cover bg-center opacity-20"></div>
-        <div className="relative z-10 text-center px-4">
-          <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6">
-            子どもたちの笑顔が<br />あふれる幼稚園
-          </h1>
-          <p className="text-xl md:text-2xl text-gray-700 mb-8 max-w-2xl mx-auto">
-            一人ひとりの個性を大切に<br />心身ともに健やかな成長をサポートします
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button asChild size="lg" className="bg-sky-500 hover:bg-sky-600 text-white text-lg px-8 py-6">
-              <Link href="/admission">入園案内</Link>
-            </Button>
-            <Button asChild size="lg" variant="outline" className="text-lg px-8 py-6 border-2 border-sky-500 text-sky-600 hover:bg-sky-50">
-              <Link href="/attractions">10の魅力</Link>
-            </Button>
-          </div>
-        </div>
-      </section>
+      <Hero useImageHeadline={true} />
 
-      <section className="py-16 bg-white">
+      <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between mb-8">
+          <AnimateOnScroll animation="fade-in-up" delay={200}>
+            <div className="flex items-center justify-between mb-12">
             <div>
-              <h2 className="text-3xl font-bold text-gray-900 mb-2">お知らせ</h2>
-              <p className="text-gray-600">最新の情報をお届けします</p>
+                <h2 className="text-3xl font-bold text-atago-blue mb-2 tracking-tight">お知らせ</h2>
+                <p className="text-atago-text">最新の情報をお届けします</p>
             </div>
-            <Button asChild variant="link" className="text-sky-600">
+              <Button asChild variant="link" className="text-atago-light-blue">
               <Link href="/news" className="flex items-center">
                 すべて見る
                 <ChevronRight className="ml-1 w-4 h-4" />
               </Link>
             </Button>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {latest.map((news) => (
-              <CardComponent
-                key={news.id}
-                item={{
-                  id: news.id,
-                  title: news.title,
-                  description: news.description || '',
-                  date: news.date,
-                  category: news.category,
-                  image: news.image,
-                  href: `/news/${news.id}`,
-                  alt: news.title
-                }}
-              />
+          </AnimateOnScroll>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {latest.map((news, index) => (
+              <AnimateOnScroll key={news.id} animation="slide-up" delay={index * 100}>
+                <div className="hover-lift">
+                  <CardComponent
+                    item={{
+                      id: news.id,
+                      title: news.title,
+                      description: news.description || '',
+                      date: news.date,
+                      category: news.category,
+                      image: news.image,
+                      href: `/news/${news.id}`,
+                      alt: news.title
+                    }}
+                  />
+                  </div>
+              </AnimateOnScroll>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="py-16 bg-gradient-to-br from-sky-50 to-blue-50">
+      <SectionStrap 
+        title="園のご案内" 
+        pills={[
+          {label:'10の魅力', href:'/attractions'},
+          {label:'施設紹介', href:'/about/facilities'}
+        ]} 
+      />
+
+      <section className="py-20 bg-atago-bg">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-2">園のご案内</h2>
-            <p className="text-gray-600">詳しくはこちらをご覧ください</p>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {mainNavCards.map((card) => {
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {mainNavCards.map((card, index) => {
               const Icon = card.icon;
               return (
-                <Link key={card.href} href={card.href}>
-                  <Card className="h-full hover:shadow-xl transition-all hover:-translate-y-1 border-0">
-                    <CardHeader>
-                      <div className={`w-16 h-16 rounded-full bg-gradient-to-br ${card.color} flex items-center justify-center mb-4`}>
+                <AnimateOnScroll key={card.href} animation="slide-up" delay={index * 100}>
+                  <Link href={card.href}>
+                    <Card className="h-full hover-lift border-0 shadow-md rounded-xl overflow-hidden">
+                      <CardHeader className="pb-4">
+                        <div className={`w-16 h-16 rounded-full bg-gradient-to-br ${card.color} flex items-center justify-center mb-4 shadow-lg`}>
                         <Icon className="w-8 h-8 text-white" />
                       </div>
-                      <CardTitle className="text-xl">{card.title}</CardTitle>
+                        <CardTitle className="text-xl text-atago-blue">{card.title}</CardTitle>
                     </CardHeader>
                     <CardContent>
-                      <CardDescription className="text-gray-600 leading-relaxed">
+                        <CardDescription className="text-atago-text leading-relaxed">
                         {card.description}
                       </CardDescription>
                     </CardContent>
                   </Card>
                 </Link>
+                </AnimateOnScroll>
               );
             })}
           </div>
         </div>
       </section>
 
-      <section className="py-16 bg-white">
+      <SectionStrap 
+        title="お問い合わせ" 
+        pills={[
+          {label:'見学予約', href:'/contact'},
+          {label:'資料請求', href:'/contact'}
+        ]} 
+      />
+
+      <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <CTA />
+          <AnimateOnScroll animation="fade-in-up" delay={200}>
+            <CTA />
+          </AnimateOnScroll>
         </div>
       </section>
+
+      <StickyContact />
     </div>
   );
 }

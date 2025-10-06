@@ -9,11 +9,11 @@ const Footer = () => {
           <div>
             <div className="flex items-center space-x-2 mb-4">
               <div className="w-10 h-10 bg-gradient-to-br from-sky-400 to-blue-500 rounded-full flex items-center justify-center">
-                <span className="text-white font-bold">愛</span>
+                <span className="text-white font-bold">森</span>
               </div>
               <div className="flex flex-col">
-                <span className="font-bold text-gray-900">愛宕幼稚園</span>
-                <span className="text-xs text-gray-600">ATAGO KINDERGARTEN</span>
+                <span className="font-bold text-gray-900">こどもの森 幼稚園</span>
+                <span className="text-xs text-gray-600">KODOMO NO MORI KINDERGARTEN</span>
               </div>
             </div>
             <p className="text-sm text-gray-600 leading-relaxed">
@@ -115,7 +115,7 @@ const Footer = () => {
               </a>
             </div>
             <p className="text-sm text-gray-500">
-              © 2024 愛宕幼稚園. All rights reserved.
+              © 2024 こどもの森 幼稚園. All rights reserved.
             </p>
           </div>
         </div>
