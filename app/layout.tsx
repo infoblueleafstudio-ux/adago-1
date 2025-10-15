@@ -25,14 +25,14 @@ export const metadata: Metadata = {
     address: false,
     telephone: false,
   },
-  metadataBase: new URL(process.env.SITE_URL || 'https://kodomonomori-kdg.example.com'),
+  metadataBase: new URL(process.env.SITE_URL || 'https://kodomonomori-kdg.vercel.app'),
   alternates: {
     canonical: '/',
   },
   openGraph: {
     type: 'website',
     locale: 'ja_JP',
-    url: process.env.SITE_URL || 'https://kodomonomori-kdg.example.com',
+    url: process.env.SITE_URL || 'https://kodomonomori-kdg.vercel.app',
     siteName: 'こどもの森 幼稚園',
     title: 'こどもの森 幼稚園',
     description: '子どもたちの笑顔があふれる幼稚園です。一人ひとりの個性を大切に、心身ともに健やかな成長をサポートします。',

@@ -19,8 +19,8 @@ export default function Hero({ useImageHeadline = true }: Props) {
       {/* 背景画像（全幅・カバー） */}
       <div className="absolute inset-0 -z-10">
         <div className="relative w-full h-full bg-[url('/toto.jpg')] bg-cover bg-bottom bg-no-repeat" />
-        {/* 軽いオーバーレイで視認性を向上 */}
-        <div className="absolute inset-0 bg-white/10" />
+        {/* 軽いオーバーレイと背景ブラー */}
+        <div className="absolute inset-0 bg-white/10 backdrop-blur-[2px]" />
       </div>
 
       {/* フローティングモチーフ */}
@@ -55,7 +55,7 @@ export default function Hero({ useImageHeadline = true }: Props) {
             width={1100}
             height={360}
             priority
-            className="w-full h-auto object-contain"
+            className="w-full h-auto object-contain hero-title"
           />
         </motion.div>
       </div>

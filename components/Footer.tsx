@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { MapPin, Phone, Printer, Instagram } from 'lucide-react';
+import { kindergarten } from '@/lib/config';
 
 const Footer = () => {
   return (
@@ -58,15 +59,15 @@ const Footer = () => {
             <div className="space-y-3 text-sm text-atago-text-body">
               <div className="flex items-start">
                 <MapPin className="w-4 h-4 mr-2 mt-0.5 flex-shrink-0 text-sky-600" />
-                <span>〒481-0004<br />愛知県北名古屋市○○○○</span>
+                <span>{kindergarten.address}</span>
               </div>
               <div className="flex items-center">
                 <Phone className="w-4 h-4 mr-2 flex-shrink-0 text-sky-600" />
-                <span>TEL: 0568-33-3333</span>
+                <span>TEL: {kindergarten.tel}</span>
               </div>
               <div className="flex items-center">
                 <Printer className="w-4 h-4 mr-2 flex-shrink-0 text-sky-600" />
-                <span>FAX: 03-1234-5679</span>
+                <span>FAX: {kindergarten.fax}</span>
               </div>
             </div>
           </motion.div>
@@ -158,12 +159,15 @@ const Footer = () => {
           </motion.div>
         </motion.div>
 
+        {/* フッター上の淡いグラデーションライン */}
+        <div className="footer-gradient-line mt-16 mb-8"></div>
+        
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.5 }}
           viewport={{ once: true }}
-          className="mt-20 pt-12 border-t border-sky-200"
+          className="mt-12 pt-12 border-t border-sky-200"
         >
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <div className="flex flex-wrap justify-center md:justify-start gap-4 text-sm text-atago-text-body">
@@ -180,7 +184,7 @@ const Footer = () => {
                 サイトマップ
               </Link>
               <a
-                href="https://www.google.com/maps"
+                href={kindergarten.mapUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hover:text-sky-600 transition-colors"
