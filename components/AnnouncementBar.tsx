@@ -33,7 +33,7 @@ export default function AnnouncementBar() {
         >
           <Link
             href="/news"
-            className="inline-flex items-center gap-1 rounded-full border border-[#cfcfcf] bg-white px-6 py-3 text-[15px] text-[#333] hover:bg-[#fafafa] transition"
+            className="inline-flex items-center gap-1 rounded-full border border-[#cfcfcf] bg-[#f8f4f3] px-6 py-3 text-[15px] text-[#333] hover:bg-[#f0ebe8] transition"
           >
             一覧
             <span aria-hidden>›</span>

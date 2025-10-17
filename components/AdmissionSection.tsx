@@ -11,15 +11,15 @@ export default function AdmissionSection() {
 
   return (
     <motion.section 
-      className="w-full bg-white"
+      className="w-full"
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}
       viewport={{ once: true }}
     >
-      <div className="mx-auto max-w-[1200px] px-6 py-16">
+      <div className="mx-auto max-w-[1200px] px-6 py-8">
         <motion.h3 
-          className="text-center text-[22px] font-bold text-[#333] mb-12"
+          className="text-center text-[22px] font-bold text-[#333] mb-8"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.1 }}

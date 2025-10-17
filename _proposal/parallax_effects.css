@@ -1,0 +1,142 @@
+/**
+ * 愛宕幼稚園サイト解析に基づくパララックス効果CSS提案
+ * 
+ * 【既存コード保護】
+ * - 既存のTailwindクラスは変更せず、この提案は参考用
+ * - 既存のアニメーション設定は保持
+ * - 既存のコンポーネント構造は維持
+ */
+
+/* パララックス効果の基本設定 */
+.parallax-hero {
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.parallax-footer {
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 140%;
+}
+
+/* モバイル用フォールバック */
+@media (max-width: 768px) {
+  .parallax-hero,
+  .parallax-footer {
+    background-attachment: scroll;
+    background-position: center top;
+  }
+}
+
+/* スクロール効果の強化 */
+.smooth-scroll {
+  scroll-behavior: smooth;
+}
+
+/* 背景オーバーレイの調整 */
+.overlay-light {
+  background-color: rgba(255, 255, 255, 0.7);
+}
+
+.overlay-medium {
+  background-color: rgba(255, 255, 255, 0.6);
+}
+
+.overlay-strong {
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+/* セクション間の自然な繋がり */
+.section-transition {
+  position: relative;
+  z-index: 10;
+}
+
+.section-transition::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(0,0,0,0.1), transparent);
+}
+
+/* 装飾要素の浮遊効果 */
+.floating-element {
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+/* ホバー効果の強化 */
+.hover-lift {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+/* グラデーション背景の最適化 */
+.gradient-sky {
+  background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+}
+
+.gradient-warm {
+  background: linear-gradient(135deg, #fef7ed 0%, #fed7aa 100%);
+}
+
+/* レスポンシブ対応の強化 */
+@media (max-width: 640px) {
+  .parallax-hero {
+    background-size: 120%;
+  }
+  
+  .parallax-footer {
+    background-size: 160%;
+  }
+}
+
+@media (min-width: 1024px) {
+  .parallax-hero {
+    background-size: 100%;
+  }
+  
+  .parallax-footer {
+    background-size: 130%;
+  }
+}
+
+/**
+ * 【改善提案ポイント】
+ * 
+ * 1. パララックス効果の最適化
+ *    - 既存の backgroundAttachment: 'fixed' を維持
+ *    - モバイル用フォールバックを提供
+ * 
+ * 2. 背景オーバーレイの調整
+ *    - 既存の bg-white/70 を維持
+ *    - 必要に応じて透明度を調整可能
+ * 
+ * 3. 装飾要素のアニメーション
+ *    - 既存の装飾アイコンに浮遊効果を追加
+ *    - ホバー効果でユーザビリティ向上
+ * 
+ * 4. レスポンシブ対応の強化
+ *    - デバイスサイズに応じた背景サイズ調整
+ *    - 既存のTailwindクラスと併用可能
+ * 
+ * 【既存コードとの互換性】
+ * - 既存のTailwindクラスと併用可能
+ * - 既存のアニメーション設定を保持
+ * - 既存のコンポーネント構造を維持
+ * - 必要に応じて段階的に適用可能
+ */
