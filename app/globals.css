@@ -366,23 +366,8 @@
   }
 }
 
-/* ===== デバッグ専用（本番前に削除） ===== */
-section {
-  outline: 2px dashed rgba(0, 0, 0, 0.2);
-  position: relative;
-}
-
-section::before {
-  content: attr(id);
-  position: absolute;
-  top: 4px;
-  left: 8px;
-  font: 12px/1.2 sans-serif;
-  color: #666;
-  background: #fff8;
-  padding: 2px 6px;
-  border-radius: 6px;
-}
+/* ===== デバッグ専用（無効化） ===== */
+/* 本番ではガイド線を表示しないため削除 */
 
 /* ===== 背景デコレーション用アニメーション ===== */
 .floating-element {
