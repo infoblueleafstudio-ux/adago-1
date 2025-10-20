@@ -5,10 +5,7 @@
   ],
   "routes": [
     { "src": "/(.*)", "dest": "/" }
-  ]
-}
-
-{
+  ],
   "trailingSlash": false,
   "cleanUrls": true,
   "rewrites": [
