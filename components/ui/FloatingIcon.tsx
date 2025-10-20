@@ -24,7 +24,6 @@ export default function FloatingIcon({
       alt={alt}
       initial={{ opacity: 0, y: 10 }}
       whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.8, delay }}
       viewport={{ once: true }}
       animate={
         float
