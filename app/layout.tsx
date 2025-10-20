@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 import { Noto_Sans_JP } from 'next/font/google';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
+import BackgroundShapes from '@/components/BackgroundShapes';
 
 const notoSansJP = Noto_Sans_JP({ 
   subsets: ['latin'],
@@ -75,6 +76,9 @@ export default function RootLayout({
   return (
     <html lang="ja">
       <body className={`${notoSansJP.className} bg-atago-bg text-atago-text`}>
+        {/* グローバル固定背景SVG */}
+        <BackgroundShapes />
+        
         <Navigation />
         <main className="min-h-screen">{children}</main>
         <Footer />

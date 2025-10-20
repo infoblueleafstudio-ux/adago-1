@@ -1,79 +1,159 @@
 'use client'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
+import FloatingIcon from '@/components/ui/FloatingIcon'
 
 export default function EducationSection() {
   return (
-    <section className="relative w-full overflow-hidden py-8 md:py-12">
-      {/* 装飾アイコン */}
-      <Image 
+    <section className="relative z-10 w-full bg-[#ffffff] py-8 md:py-12 overflow-visible">
+      {/* 背景モチーフ */}
+      <FloatingIcon 
         src="/icons/leaf.svg" 
-        alt="" 
-        width={28} 
-        height={28}
-        className="absolute left-[4%] top-[20%] opacity-70 hover:opacity-100 transition-opacity hidden md:block" 
+        alt="葉っぱ" 
+        className="absolute right-[8%] top-[20%] w-[60px] opacity-75 hidden md:block" 
+        delay={0.2}
+        float={true}
       />
-      <Image 
-        src="/icons/star.svg" 
-        alt="" 
-        width={20} 
-        height={20}
-        className="absolute right-[10%] top-[35%] opacity-70 hover:opacity-100 transition-opacity hidden md:block" 
-      />
-      <Image 
-        src="/icons/drop.svg" 
-        alt="" 
-        width={22} 
-        height={22}
-        className="absolute right-[6%] bottom-[25%] opacity-70 hover:opacity-100 transition-opacity hidden md:block" 
-      />
-      <Image 
+      <FloatingIcon 
         src="/icons/bird.svg" 
-        alt="" 
-        width={24} 
-        height={24}
-        className="absolute left-[8%] bottom-[30%] opacity-70 hover:opacity-100 transition-opacity hidden md:block" 
-      />
-      <Image 
-        src="/icons/swing.svg" 
-        alt="" 
-        width={26} 
-        height={26}
-        className="absolute right-[15%] top-[15%] opacity-70 hover:opacity-100 transition-opacity hidden md:block" 
-      />
-      <Image 
-        src="/icons/block.svg" 
-        alt="" 
-        width={30} 
-        height={30}
-        className="absolute left-[12%] top-[45%] opacity-70 hover:opacity-100 transition-opacity hidden md:block" 
+        alt="小鳥" 
+        className="absolute left-[8%] bottom-[30%] w-[50px] opacity-70 hidden md:block" 
+        delay={0.4}
+        float={true}
+        rotate={true}
       />
 
       {/* タイトル */}
       <motion.h3
-        initial={{ opacity: 0, y: 20 }}
+        initial={{ opacity: 0, y: 15 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.2 }}
         viewport={{ once: true }}
-        className="text-[22px] md:text-[24px] font-bold tracking-[0.06em] text-[#333] text-center mb-6"
+        className="
+          text-[26px] md:text-[42px] font-bold 
+          tracking-[0.08em] text-[#333]
+          text-center
+          mb-2 md:mb-3
+          -mt-4 md:-mt-12        /* ← タイトルを点線ガイドに近づける */
+        "
       >
         教育と保育
       </motion.h3>
 
-      {/* 画像 */}
-      <motion.div
-        initial={{ opacity: 0, scale: 0.98 }}
-        whileInView={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.6, delay: 0.3 }}
-        viewport={{ once: true }}
-        className="relative overflow-hidden rounded-[40px] shadow-md mx-auto max-w-[900px]"
-      >
-        <img
-          src="/5.jpeg"
-          alt="教育と保育の風景"
-          className="w-full h-[420px] object-cover"
-        />
-      </motion.div>
+      {/* 教育と保育のメイン画像（上下スリム・左右カプセル型） */}
+      <div className="relative w-[88vw] max-w-[1500px] mx-auto mt-2 md:mt-4 mb-12 md:mb-16 overflow-visible">
+        {/* 画像コンテナ（角丸・overflow-hidden） */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.98 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          viewport={{ once: true }}
+          className="
+            relative overflow-hidden
+            w-full
+            aspect-[4.4/1]
+            rounded-[200px]
+            shadow-lg bg-white
+          "
+        >
+          <img
+            src="/5.jpeg"
+            alt="教育と保育の風景"
+            className="w-full h-full object-cover object-[center_42%]"
+          />
+        </motion.div>
+
+        {/* オーバーレイテキスト（外側配置・縦書き・個別背景） */}
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.6 }}
+          viewport={{ once: true }}
+          className="
+            absolute inset-0
+            flex items-start justify-end
+            pointer-events-none
+            z-10
+          "
+        >
+          {/* テキスト行ごとに高さを個別調整 */}
+          <div
+            className="flex flex-col items-end justify-end pr-[2%] pt-[4%] gap-[8px]"
+            style={{
+              writingMode: "vertical-rl",
+              textOrientation: "mixed",
+              transform: "translate(2%, -35%)",
+            }}
+          >
+            {[
+              { text: "感じて、", offset: -128 },
+              { text: "考えて、", offset: -130 },
+              { text: "動いて。", offset: -130 },
+              { text: "五感をフルに使う", offset: -1 },
+              { text: "やまほいく。", offset: -80 },
+            ].map(({ text, offset }, i) => (
+              <span
+                key={i}
+                className="
+                  font-bold
+                  text-3xl md:text-3xl
+                  text-white
+                  bg-black/80
+                  rounded-md
+                  shadow-md
+                  px-[5px] py-[5px]
+                  drop-shadow-[1px_1px_4px_rgba(0,0,0,0.4)]
+                  transition-all
+                  duration-300
+                "
+                style={{
+                  lineHeight: "3rem",
+                  transform: `translateY(${offset}px)`,
+                  paddingInline: "0.3rem", // ← 上下の余白をここで調整！
+                  paddingBlock: "0rem",  // ← 左右の余白（高さ）を調整
+                }}
+              >
+                {text}
+              </span>
+            ))}
+          </div>
+        </motion.div>
+
+        {/* 🟢 園の理念 CTAボタン（キャラ付き・愛宕幼稚園風） */}
+        <div
+          className="absolute left-1/2 bottom-[-45px] -translate-x-1/2 z-30 flex flex-col items-center"
+        >
+          {/* キャラクター画像（おじぎ） */}
+          <motion.img
+            src="/icons/ojigi.png"
+            alt="キャラクター"
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.7 }}
+            viewport={{ once: true }}
+            className="w-[90px] md:w-[80px] mb-[-5px] z-20 select-none pointer-events-none"
+          />
+
+          {/* 園の理念ボタン */}
+          <motion.a
+            href="/education/philosophy"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.9 }}
+            viewport={{ once: true }}
+            className="
+              bg-[#84b78e] text-white font-bold text-[16px] md:text-[20px]
+              px-8 py-3 rounded-full shadow-md
+              border-[2px] border-[#3cb371]
+              hover:bg-[#808080] hover:scale-105
+              transition-all duration-300
+              shadow-lg
+            "
+          >
+            園の理念
+          </motion.a>
+        </div>
+      </div>
 
       {/* メニュー */}
       <motion.div
@@ -81,32 +161,57 @@ export default function EducationSection() {
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.4 }}
         viewport={{ once: true }}
-        className="flex justify-center items-center flex-wrap gap-10 mt-[60px] mb-[70px] text-[20px] font-medium text-[#333]"
+        className="
+          flex justify-center items-center flex-wrap
+          mt-[35px] mb-[35px]
+          text-[16px] md:text-[18px] font-bold tracking-[0.05em]
+          text-[#333] space-x-0 md:space-x-1
+        "
       >
-        {[
-          { label: '園での1日', href: '/day' },
-          { label: '年間行事', href: '/events' },
-          { label: '知育', href: '/education' },
-          { label: '体育', href: '/sports' },
-          { label: '食育', href: '/food' },
-          { label: '先生の紹介', href: '/teachers' },
-        ].map((item, i, arr) => (
-          <motion.div key={i} className="flex items-center">
-            {/* メニューリンク */}
-            <motion.a
-              href={item.href}
-              whileHover={{ scale: 1.05 }}
-              className="text-black hover:text-[#e6a64b] transition-all duration-300 px-3"
-            >
-              {item.label}
-            </motion.a>
+        <>
+          {/* 左端の区切り線 */}
+          <span className="
+              mx-1 h-[25px] w-[1.5px] bg-[#555] opacity-60
+            translate-y-[1px]  /* ← テキスト中央に合わせるため微調整 */
+          "></span>
+          
+          {[
+            { label: '園での1日', href: '/day' },
+            { label: '年間行事', href: '/events' },
+            { label: '知育', href: '/education' },
+            { label: '体育', href: '/sports' },
+            { label: '食育', href: '/food' },
+            { label: '先生の紹介', href: '/teachers' },
+          ].map((item, i, arr) => (
+            <div key={i} className="flex items-center">
+              {/* メニューリンク */}
+              <motion.a
+                href={item.href}
+                whileHover={{ scale: 1.05 }}
+                className="
+                  text-black hover:text-[#e6a64b]
+                  transition-all duration-300 px-3
+                "
+              >
+                {item.label}
+              </motion.a>
 
-            {/* 区切り線（最後の項目以外に表示） */}
-            {i < arr.length - 1 && (
-              <span className="h-6 w-[1px] bg-black mx-4"></span>
-            )}
-          </motion.div>
-        ))}
+              {/* 区切り線（最後にも表示） */}
+              {i < arr.length - 1 && (
+                <span className="
+                    mx-1 h-[25px] w-[1.5px] bg-[#555] opacity-60
+                  translate-y-[1px]  /* ← テキスト中央に合わせるため微調整 */
+                "></span>
+              )}
+            </div>
+          ))}
+          
+          {/* 右端の区切り線 */}
+          <span className="
+              mx-1 h-[25px] w-[1.5px] bg-[#555] opacity-60
+            translate-y-[1px]  /* ← テキスト中央に合わせるため微調整 */
+          "></span>
+        </>
       </motion.div>
     </section>
   )

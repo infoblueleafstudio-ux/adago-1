@@ -1,61 +1,97 @@
 'use client'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
+import FloatingIcon from '@/components/ui/FloatingIcon'
 
 export default function SupportSection() {
   return (
-    <section className="w-full py-8 md:py-12 relative overflow-hidden">
-      <div className="relative z-10 mx-auto max-w-[1100px] px-6 text-center">
+    <section className="w-full bg-[#ffffff] py-12 md:py-16 relative z-10 overflow-visible">
+      {/* 背景モチーフ */}
+      <FloatingIcon 
+        src="/icons/bird.svg" 
+        alt="小鳥" 
+        className="absolute right-[8%] top-[15%] w-[65px] opacity-80" 
+        delay={0.2}
+        float={true}
+        rotate={true}
+      />
+      <FloatingIcon 
+        src="/icons/drop.svg" 
+        alt="水滴" 
+        className="absolute left-[5%] bottom-[25%] w-[55px] opacity-75" 
+        delay={0.4}
+        float={true}
+      />
+      
+      <div className="relative mx-auto w-[88vw] max-w-[1500px] text-center">
         {/* 見出し */}
         <motion.h2
           initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="text-[22px] md:text-[24px] font-bold text-[#333] mb-8"
+          className="text-[22px] md:text-[40px] font-bold text-[#333] mb-10"
         >
           こどもの森幼稚園は子育てを応援しています
         </motion.h2>
 
         {/* 写真2枚 */}
-        <div className="flex flex-col md:flex-row justify-center gap-8 mb-10">
+        <div className="flex flex-col md:flex-row justify-between gap-8 mb-10">
           {['/7.jpeg', '/1.jpeg'].map((src, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, scale: 0.96 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.6, delay: i * 0.2 }}
-              viewport={{ once: true }}
-              className="rounded-[20px] overflow-hidden shadow-md md:w-1/2 bg-[#f8f8f8] transition-transform hover:scale-[1.02] duration-500 ease-out"
-            >
-              <Image
-                src={src}
-                alt={i === 0 ? '子育て支援の様子' : '園での様子'}
-                width={550}
-                height={350}
-                className="w-full h-[300px] md:h-[340px] object-cover"
-              />
-            </motion.div>
+            <div key={i} className="md:w-[48%] flex flex-col items-center">
+              {/* 画像部分 */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.96 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.6, delay: i * 0.2 }}
+                viewport={{ once: true }}
+                className="rounded-[24px] overflow-hidden shadow-md bg-white hover-lift"
+              >
+                <Image
+                  src={src}
+                  alt={i === 0 ? '子育て支援の様子' : '園での様子'}
+                  width={700}
+                  height={450}
+                  className="w-full h-[300px] md:h-[360px] object-cover"
+                />
+              </motion.div>
+
+              {/* テキスト・ボタン（カード外） */}
+              <div className="mt-5 text-center w-full">
+                {i === 0 ? (
+                  <>
+                    <h3 className="text-[17px] md:text-[19px] font-bold text-[#000000] mb-2">
+                      子育て支援
+                    </h3>
+                    <p className="text-[14px] md:text-[15px] text-[#555] leading-relaxed mb-3">
+                      持ち物の削減や送迎サポートなど、保護者のご負担を減らす取り組みを行っています。
+                    </p>
+                    <a
+                      href="/support"
+                      className="inline-block rounded-full bg-[#e6a64b] text-white px-6 py-2.5 text-[14px] font-medium hover:opacity-90 transition"
+                    >
+                      子育て支援について
+                    </a>
+                  </>
+                ) : (
+                  <>
+                    <h3 className="text-[17px] md:text-[19px] font-bold text-[#000000] mb-2">
+                      よくあるご質問
+                    </h3>
+                    <p className="text-[14px] md:text-[15px] text-[#555] leading-relaxed mb-3">
+                      保護者の方々から寄せられる、よくあるご質問をまとめました。
+                    </p>
+                    <a
+                      href="/faq"
+                      className="inline-block rounded-full bg-[#999] text-white px-6 py-2.5 text-[14px] font-medium hover:opacity-90 transition"
+                    >
+                      よくある質問
+                    </a>
+                  </>
+                )}
+              </div>
+            </div>
           ))}
-        </div>
-
-        {/* CTAボタン */}
-        <div className="flex flex-col md:flex-row justify-center gap-6">
-          <motion.a
-            href="/support"
-            whileHover={{ scale: 1.05 }}
-            className="rounded-full bg-[#e6a64b] text-white px-8 py-3 text-[15px] font-medium hover:opacity-90 transition"
-          >
-            子育て支援はこちら
-          </motion.a>
-
-          <motion.a
-            href="/faq"
-            whileHover={{ scale: 1.05 }}
-            className="rounded-full bg-[#999] text-white px-8 py-3 text-[15px] font-medium hover:opacity-90 transition"
-          >
-            よくあるご質問
-          </motion.a>
         </div>
       </div>
 

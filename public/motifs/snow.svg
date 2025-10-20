@@ -1,0 +1,26 @@
+<svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- 中心の縦線 -->
+  <line x1="20" y1="4" x2="20" y2="36" stroke="#555" stroke-width="1.5" stroke-linecap="round"/>
+  <!-- 左上から右下の斜め線 -->
+  <line x1="7" y1="11" x2="33" y2="29" stroke="#555" stroke-width="1.5" stroke-linecap="round"/>
+  <!-- 右上から左下の斜め線 -->
+  <line x1="33" y1="11" x2="7" y2="29" stroke="#555" stroke-width="1.5" stroke-linecap="round"/>
+  <!-- 上部の装飾 -->
+  <line x1="20" y1="4" x2="16" y2="8" stroke="#555" stroke-width="1.5" stroke-linecap="round"/>
+  <line x1="20" y1="4" x2="24" y2="8" stroke="#555" stroke-width="1.5" stroke-linecap="round"/>
+  <!-- 下部の装飾 -->
+  <line x1="20" y1="36" x2="16" y2="32" stroke="#555" stroke-width="1.5" stroke-linecap="round"/>
+  <line x1="20" y1="36" x2="24" y2="32" stroke="#555" stroke-width="1.5" stroke-linecap="round"/>
+  <!-- 左上の装飾 -->
+  <line x1="7" y1="11" x2="7" y2="15" stroke="#555" stroke-width="1.5" stroke-linecap="round"/>
+  <line x1="7" y1="11" x2="11" y2="11" stroke="#555" stroke-width="1.5" stroke-linecap="round"/>
+  <!-- 右下の装飾 -->
+  <line x1="33" y1="29" x2="33" y2="25" stroke="#555" stroke-width="1.5" stroke-linecap="round"/>
+  <line x1="33" y1="29" x2="29" y2="29" stroke="#555" stroke-width="1.5" stroke-linecap="round"/>
+  <!-- 右上の装飾 -->
+  <line x1="33" y1="11" x2="33" y2="15" stroke="#555" stroke-width="1.5" stroke-linecap="round"/>
+  <line x1="33" y1="11" x2="29" y2="11" stroke="#555" stroke-width="1.5" stroke-linecap="round"/>
+  <!-- 左下の装飾 -->
+  <line x1="7" y1="29" x2="7" y2="25" stroke="#555" stroke-width="1.5" stroke-linecap="round"/>
+  <line x1="7" y1="29" x2="11" y2="29" stroke="#555" stroke-width="1.5" stroke-linecap="round"/>
+</svg>

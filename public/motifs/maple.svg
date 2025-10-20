@@ -1,0 +1,6 @@
+<svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- 紅葉の5つの葉 -->
+  <path d="M20 5L18 12L14 10L16 16L10 14L14 20L8 20L14 22L10 26L16 24L14 30L18 28L20 35L22 28L26 30L24 24L30 26L26 22L32 20L26 20L30 14L24 16L26 10L22 12L20 5Z" stroke="#555" stroke-width="1.5" stroke-linejoin="round" fill="none"/>
+  <!-- 茎 -->
+  <line x1="20" y1="35" x2="20" y2="38" stroke="#555" stroke-width="1.5" stroke-linecap="round"/>
+</svg>

@@ -3,45 +3,51 @@ import { motion } from 'framer-motion'
 
 export default function AnnouncementSection() {
   return (
-    <section className="relative w-full py-6 md:py-8 overflow-hidden">
-      {/* お知らせと一覧を横並びに配置 */}
-      <div className="relative z-10 w-full max-w-[1100px] mx-auto px-6 mb-6">
-        <div className="flex justify-center items-center mb-6 relative">
-          <motion.h2
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-            className="text-[22px] md:text-[24px] font-bold text-[#333]"
-          >
-            お知らせ
-          </motion.h2>
+    <section className="relative z-[1] w-full bg-[#f8f4f3] py-[30px] overflow-visible">
+      {/* 背景モチーフ（怪獣） */}
+      <motion.img
+        src="/gao.svg"
+        alt="怪獣モチーフ"
+        className="
+          absolute
+          right-[9%]
+          bottom-[-120px]
+          w-[240px]
+          opacity-100
+          rotate-[10deg]
+          pointer-events-none
+        "
+        animate={{
+          x: [0, 12, -12, 0],
+          rotate: [10, 12, 8, 10],
+        }}
+        transition={{
+          duration: 5,
+          repeat: Infinity,
+          ease: 'easeInOut',
+        }}
+      />
+      
+      {/* タイトルと一覧ボタン（Gridで安定配置） */}
+      <div className="relative z-10 w-full max-w-[1100px] mx-auto px-6
+                      grid grid-cols-[1fr_auto_1fr] items-center">
+        <h2
+          className="col-start-2 justify-self-center text-[35px] md:text-[38px] font-bold text-[#333] leading-tight"
+        >
+          お知らせ
+        </h2>
 
-          <motion.a
-            href="/news"
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            viewport={{ once: true }}
-            className="absolute right-0 rounded-full border border-[#ddd] bg-[#f8f4f3] text-[#555] text-sm px-6 py-1.5 hover:bg-[#e6a64b] hover:text-white transition-all"
-          >
-            一覧
-          </motion.a>
-        </div>
+        <a
+          href="/news"
+          className="col-start-3 justify-self-end
+          rounded-full border border-[#ddd] bg-[#f8f4f3] text-[#555]
+          text-[15px] font-extrabold tracking-tight [text-shadow:0_0_0.3px_#555]
+          leading-[1] px-8 py-2
+          hover:bg-[#006400] hover:text-white transition-all duration-300"
+        >
+          一覧
+        </a>
       </div>
-
-      {/* 波型の背景 */}
-      <svg
-        className="absolute top-0 left-0 w-full h-[90px] text-[#f8f4f3] rotate-180 -z-10"
-        viewBox="0 0 1440 90"
-        xmlns="http://www.w3.org/2000/svg"
-        preserveAspectRatio="none"
-      >
-        <path
-          fill="currentColor"
-          d="M0,20 C180,80 360,0 540,40 C720,80 900,10 1080,50 C1260,90 1440,30 1440,30 L1440,90 L0,90 Z"
-        />
-      </svg>
     </section>
   )
 }

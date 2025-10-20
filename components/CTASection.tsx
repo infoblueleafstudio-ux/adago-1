@@ -8,28 +8,26 @@ export default function CTASection() {
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}
       viewport={{ once: true }}
-      className="w-full py-8"
+      className="relative z-[0] w-full bg-[#ffffff] py-[4px]"
     >
-      <div className="mx-auto max-w-[800px] px-6">
-        <div className="flex justify-center gap-6">
-          <motion.a
-            href="/features"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="rounded-full bg-[#f9c87a] text-white px-6 py-2.5 text-base font-semibold shadow-sm hover:opacity-90 transition"
-          >
-            10の魅力
-          </motion.a>
+      <div className="w-full flex justify-center gap-10 mt-0">
+        <motion.a
+          href="/attractions"  // ← 修正：ナビと同じリンクに統一
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          className="rounded-full bg-[#f6c87a] text-white px-12 py-3 text-[18px] font-medium leading-tight hover:opacity-90 transition-all duration-300"
+        >
+          10の魅力
+        </motion.a>
 
-          <motion.a
-            href="/facility"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="rounded-full bg-[#f7a9a1] text-white px-6 py-2.5 text-base font-semibold shadow-sm hover:opacity-90 transition"
-          >
-            施設紹介
-          </motion.a>
-        </div>
+        <motion.a
+          href="/about/facilities"  // ← 修正：ナビの「施設紹介」と同じ
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          className="rounded-full bg-[#f19c9c] text-white px-12 py-3 text-[18px] font-medium leading-tight hover:opacity-90 transition-all duration-300"
+        >
+          施設紹介
+        </motion.a>
       </div>
     </motion.div>
   )
