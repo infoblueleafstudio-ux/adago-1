@@ -3,9 +3,7 @@
   "builds": [
     { "src": "package.json", "use": "@vercel/next" }
   ],
-  "routes": [
-    { "src": "/(.*)", "dest": "/" }
-  ],
+  
   "trailingSlash": false,
   "cleanUrls": true,
   "rewrites": [
