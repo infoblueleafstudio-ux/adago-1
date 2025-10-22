@@ -6,22 +6,6 @@ import FloatingIcon from '@/components/ui/FloatingIcon'
 export default function EducationSection() {
   return (
     <section className="relative z-10 w-full bg-[#ffffff] py-8 md:py-12 overflow-visible">
-      {/* 背景モチーフ */}
-      <FloatingIcon 
-        src="/icons/leaf.svg" 
-        alt="葉っぱ" 
-        className="absolute right-[8%] top-[20%] w-[60px] opacity-75 hidden md:block" 
-        delay={0.2}
-        float={true}
-      />
-      <FloatingIcon 
-        src="/icons/bird.svg" 
-        alt="小鳥" 
-        className="absolute left-[8%] bottom-[30%] w-[50px] opacity-70 hidden md:block" 
-        delay={0.4}
-        float={true}
-        rotate={true}
-      />
 
       {/* タイトル */}
       <motion.h3
@@ -40,30 +24,97 @@ export default function EducationSection() {
         教育と保育
       </motion.h3>
 
-      {/* 教育と保育のメイン画像（上下スリム・左右カプセル型） */}
-      <div className="relative w-[88vw] max-w-[1500px] mx-auto mt-2 md:mt-4 mb-12 md:mb-16 overflow-visible">
-        {/* 画像コンテナ（角丸・overflow-visibleに変更） */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.98 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          viewport={{ once: true }}
-          className="
-            relative overflow-hidden
-            w-full
-            aspect-[4.4/1]
-            rounded-[250px] sm:rounded-[300px] md:rounded-[350px]
-            shadow-lg bg-white
-          "
-        >
-          <img
-            src="/5.jpeg"
-            alt="教育と保育の風景"
-            className="w-full h-full object-cover object-[center_42%]"
-          />
-        </motion.div>
+        {/* 教育と保育のメイン画像（スマホ：丸型／PC：カプセル型） */}
+        <div className="relative w-[88vw] max-w-[1500px] mx-auto mt-2 md:mt-4 mb-12 md:mb-16 overflow-visible">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.98 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            viewport={{ once: true }}
+            className="
+              relative
+              w-full
+              aspect-square md:aspect-[4.4/1]
+              rounded-full md:rounded-[350px]
+              shadow-lg bg-white
+              mx-auto
+              overflow-visible    /* ← ここを visible に変更 */
+            "
+          >
+            {/* 丸画像だけを overflow-hidden にする */}
+            <div className="relative w-full h-full overflow-hidden rounded-full md:rounded-[350px]">
+              {/* スマホ用（丸型） */}
+              <img
+                src="/ohiku.jpeg"
+                alt="教育と保育の風景（スマホ用）"
+                className="
+                  block md:hidden
+                  w-full h-full object-cover
+                  object-[center_30%]
+                  rounded-full
+                "
+              />
 
-        {/* 🟣 黒帯テキスト（上にオーバーラップ） */}
+              {/* PC用（カプセル型） */}
+              <img
+                src="/5.jpeg"
+                alt="教育と保育の風景（PC用）"
+                className="
+                  hidden md:block
+                  w-full h-full object-cover
+                  object-[center_40%]
+                  scale-[1]
+                  rounded-[350px]
+                "
+              />
+            </div>
+
+            {/* 🟣 黒帯テキスト（スマホ用・右上） */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+              viewport={{ once: true }}
+              className="
+                absolute z-30   /* ← z-index強化 */
+                top-[1%] right-[5%]
+                flex md:hidden flex-col items-start gap-[4px]
+                pointer-events-none
+              "
+              style={{
+                writingMode: 'vertical-rl',
+                textOrientation: 'mixed',
+              }}
+            >
+              {[
+                '感じて、',
+                '考えて、',
+                '動いて。',
+                '五感をフルに使う',
+                'やまほいく。',
+              ].map((text, i) => (
+                <span
+                  key={i}
+                  className="
+                    font-bold
+                    text-[12px]
+                    text-white
+                    bg-black/80
+                    rounded-md
+                    shadow-md
+                    px-[1px] py-[1px]
+                    drop-shadow-[1px_1px_3px_rgba(0,0,0,0.4)]
+                    leading-[1.4rem]
+                    transition-transform duration-300
+                  "
+                >
+                  {text}
+                </span>
+              ))}
+            </motion.div>
+          </motion.div>
+
+        {/* 🟣 黒帯テキスト（PC用・上にオーバーラップ） */}
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -72,7 +123,7 @@ export default function EducationSection() {
           className="
             absolute z-20
             top-[-50px] sm:top-[-60px] md:top-[-50px] right-[1%]
-            flex flex-col items-start gap-[8px]
+            hidden md:flex flex-col items-start gap-[8px]
             pointer-events-none
           "
           style={{
@@ -107,11 +158,9 @@ export default function EducationSection() {
           ))}
         </motion.div>
 
-        {/* 🟢 園の理念 CTAボタン（キャラ付き・愛宕幼稚園風） */}
-        <div
-          className="absolute left-1/2 bottom-[-45px] -translate-x-1/2 z-30 flex flex-col items-center"
-        >
-          {/* キャラクター画像（おじぎ） */}
+        {/* 🟢 園の理念 CTAボタン（スマホでもキャラ表示） */}
+        <div className="absolute left-1/2 bottom-[-45px] -translate-x-1/2 z-30 flex flex-col items-center">
+          {/* おじぎキャラ（スマホ対応） */}
           <motion.img
             src="/icons/ojigi.png"
             alt="キャラクター"
@@ -119,10 +168,13 @@ export default function EducationSection() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.7 }}
             viewport={{ once: true }}
-            className="w-[90px] md:w-[80px] mb-[-5px] z-20 select-none pointer-events-none"
+            className="
+              block md:block
+              w-[70px] md:w-[80px]
+              mb-[-5px] z-20 select-none pointer-events-none
+            "
           />
 
-          {/* 園の理念ボタン */}
           <motion.a
             href="/education/philosophy"
             initial={{ opacity: 0, y: 20 }}
