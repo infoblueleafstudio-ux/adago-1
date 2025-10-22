@@ -42,7 +42,7 @@ export default function EducationSection() {
 
       {/* 教育と保育のメイン画像（上下スリム・左右カプセル型） */}
       <div className="relative w-[88vw] max-w-[1500px] mx-auto mt-2 md:mt-4 mb-12 md:mb-16 overflow-visible">
-        {/* 画像コンテナ（角丸・overflow-hidden） */}
+        {/* 画像コンテナ（角丸・overflow-visibleに変更） */}
         <motion.div
           initial={{ opacity: 0, scale: 0.98 }}
           whileInView={{ opacity: 1, scale: 1 }}
@@ -52,7 +52,7 @@ export default function EducationSection() {
             relative overflow-hidden
             w-full
             aspect-[4.4/1]
-            rounded-[200px]
+            rounded-[250px] sm:rounded-[300px] md:rounded-[350px]
             shadow-lg bg-white
           "
         >
@@ -63,60 +63,48 @@ export default function EducationSection() {
           />
         </motion.div>
 
-        {/* オーバーレイテキスト（外側配置・縦書き・個別背景） */}
+        {/* 🟣 黒帯テキスト（上にオーバーラップ） */}
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.6 }}
           viewport={{ once: true }}
           className="
-            absolute inset-0
-            flex items-start justify-end
+            absolute z-20
+            top-[-50px] sm:top-[-60px] md:top-[-50px] right-[1%]
+            flex flex-col items-start gap-[8px]
             pointer-events-none
-            z-10
           "
+          style={{
+            writingMode: "vertical-rl",
+            textOrientation: "mixed",
+          }}
         >
-          {/* テキスト行ごとに高さを個別調整 */}
-          <div
-            className="flex flex-col items-end justify-end pr-[2%] pt-[4%] gap-[8px]"
-            style={{
-              writingMode: "vertical-rl",
-              textOrientation: "mixed",
-              transform: "translate(2%, -35%)",
-            }}
-          >
-            {[
-              { text: "感じて、", offset: -128 },
-              { text: "考えて、", offset: -130 },
-              { text: "動いて。", offset: -130 },
-              { text: "五感をフルに使う", offset: -1 },
-              { text: "やまほいく。", offset: -80 },
-            ].map(({ text, offset }, i) => (
-              <span
-                key={i}
-                className="
-                  font-bold
-                  text-3xl md:text-3xl
-                  text-white
-                  bg-black/80
-                  rounded-md
-                  shadow-md
-                  px-[5px] py-[5px]
-                  drop-shadow-[1px_1px_4px_rgba(0,0,0,0.4)]
-                  transition-all
-                  duration-300
-                "
-                style={{
-                  lineHeight: "3rem",
-                  transform: `translateY(${offset}px)`,
-                  paddingInline: "0.3rem", // ← 上下の余白をここで調整！
-                  paddingBlock: "0rem",  // ← 左右の余白（高さ）を調整
-                }}
-              >
-                {text}
-              </span>
-            ))}
-          </div>
+          {[
+            "感じて、",
+            "考えて、",
+            "動いて。",
+            "五感をフルに使う",
+            "やまほいく。",
+          ].map((text, i) => (
+            <span
+              key={i}
+              className="
+                font-bold
+                text-[20px] sm:text-[24px] md:text-[30px]
+                text-white
+                bg-black/80
+                rounded-md
+                shadow-md
+                px-[3px] py-[1px]
+                drop-shadow-[1px_1px_4px_rgba(0,0,0,0.4)]
+                leading-[2rem] md:leading-[3rem]
+                transition-all duration-300
+              "
+            >
+              {text}
+            </span>
+          ))}
         </motion.div>
 
         {/* 🟢 園の理念 CTAボタン（キャラ付き・愛宕幼稚園風） */}
@@ -145,7 +133,7 @@ export default function EducationSection() {
               bg-[#84b78e] text-white font-bold text-[16px] md:text-[20px]
               px-8 py-3 rounded-full shadow-md
               border-[2px] border-[#3cb371]
-              hover:bg-[#808080] hover:scale-105
+              hover:bg-[#006400] hover:scale-105 hover:text-[#ffefd5]
               transition-all duration-300
               shadow-lg
             "
@@ -189,7 +177,7 @@ export default function EducationSection() {
                 href={item.href}
                 whileHover={{ scale: 1.05 }}
                 className="
-                  text-black hover:text-[#e6a64b]
+                  text-black hover:text-[#696969]
                   transition-all duration-300 px-3
                 "
               >
