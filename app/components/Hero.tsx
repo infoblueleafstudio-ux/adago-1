@@ -13,11 +13,11 @@ export default function Hero({ useImageHeadline = true }: Props) {
   return (
     <motion.section
       className="
-        relative z-10 w-full 
-        h-[100svh] md:h-screen       /* ✅ iPhone対応: svhで安全に全高 */
-        flex items-center justify-center 
-        overflow-hidden bg-white
-      "
+    relative z-10 w-full 
+    h-[28svh] md:h-screen   /* ✅ 背景が画面全体に自然にフィット */
+    flex items-center justify-center 
+    overflow-hidden bg-white
+  "
       initial={{ y: 30 }}
       animate={{ y: 0 }}
       transition={{ duration: 1.6, ease: 'easeOut' }}
@@ -29,7 +29,7 @@ export default function Hero({ useImageHeadline = true }: Props) {
             w-full h-full 
             bg-[url('/toto.jpg')] bg-no-repeat
             bg-cover
-            bg-[center_70%] md:bg-[center_bottom]
+            bg-[center_55%] md:bg-[center_50%]
           "
           style={{
             backgroundAttachment: 'scroll',
@@ -37,20 +37,31 @@ export default function Hero({ useImageHeadline = true }: Props) {
         />
       </div>
 
-      {/* 背景モチーフ（愛宕風） */}
+      {/* 背景モチーフ*/}
       <FloatingIcon
-        src="/leaf5.svg"
-        alt="葉っぱ"
-        className="absolute left-[5%] bottom-[15%] w-[60px] md:w-[80px] opacity-80"
+        src="/momiji.png"
+        alt="紅葉"
+        className="absolute left-[1%] bottom-[1%] md:left-[2%] md:bottom-[7%] w-[60px] md:w-[150px] opacity-80"
         delay={0.2}
         float
       />
       <FloatingIcon
-        src="/tori1.svg"
-        alt="鳥"
+        src="/sunsun.png"
+        alt="太陽"
         className="
-          absolute right-[4%] top-[15%] 
-          w-[120px] sm:w-[150px] md:w-[180px] 
+          absolute right-[4%] top-[1%] md:right-[8%] md:top-[1%]
+          w-[75px] md:w-[180px] 
+          opacity-75 "
+        delay={0.4}
+        float
+        rotate
+      />
+           <FloatingIcon
+        src="/sun.png"
+        alt="花"
+        className="
+          absolute left-[7%] top-[9%] md:left-[8%] md:top-[10%]
+          w-[48px] md:w-[180px] 
           opacity-75 "
         delay={0.4}
         float
@@ -58,31 +69,42 @@ export default function Hero({ useImageHeadline = true }: Props) {
       />
 
       {/* キャッチコピー */}
-      <div className="relative flex flex-col justify-center items-center text-center px-6 w-full">
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1.2, ease: 'easeOut', delay: 0.6 }}
-          className="mx-auto max-w-[780px] mt-6"
-        >
+      <div className="relative w-full flex justify-center items-center">
+        <div className="relative h-[400px] md:h-[700px] w-full flex justify-center items-center">
           <motion.div
-            animate={{ y: [0, -12, 0] }}
-            transition={{
-              duration: 5,
-              ease: 'easeInOut',
-              repeat: Infinity,
-            }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1.2, ease: 'easeOut', delay: 0.6 }}
+            className="
+              absolute
+              left-[54%] top-[35%] md:top-[15%]
+              -translate-x-1/2 -translate-y-1/2
+              md:left-[56%]
+            "
           >
-            <Image
-              src="/ctt.svg"
-              alt="キャッチコピー"
-              width={900} // ✅ サイズ軽減
-              height={300}
-              priority
-              className="w-full h-auto object-contain hero-title"
-            />
+            <motion.div
+              animate={{ y: [0, -12, 0] }}
+              transition={{
+                duration: 5,
+                ease: 'easeInOut',
+                repeat: Infinity,
+              }}
+            >
+              <Image
+                src="/ctt.svg"
+                alt="キャッチコピー"
+                width={900}
+                height={300}
+                priority
+                className="
+                  w-[88%] md:w-[83%]
+                  h-auto object-contain
+                  pointer-events-none select-none
+                "
+              />
+            </motion.div>
           </motion.div>
-        </motion.div>
+        </div>
       </div>
     </motion.section>
   )

@@ -3,35 +3,77 @@ import { motion } from 'framer-motion'
 
 export default function AnnouncementSection() {
   return (
-    <section className="relative z-[1] w-full bg-[#f8f4f3] py-[30px] overflow-visible">
-      {/* 背景モチーフ（怪獣） */}
+    <section className="relative z-[20] w-full bg-[#f8f4f3] pt-[91px] pb-[10px] md:py-[50px]   overflow-visible">
+      {/* 🏞 背景モチーフ（山） */}
       <motion.img
-        src="/gao.svg"
+        src="/yama.png"
+        alt="山のモチーフ"
+        initial={{ opacity: 0, scale: 0.95, y: -20 }}
+        whileInView={{ opacity: 1, scale: 1, y: 0 }}
+        transition={{ duration: 0.8, delay: 0.2 }}
+        viewport={{ once: true }}
+        className="
+          absolute
+          left-[32%] top-[-50px]         /* スマホ用位置 */
+          md:left-[43%] md:top-[-180px]  /* PC用位置 */
+          w-[150px] md:w-[240px]
+          opacity-90
+          pointer-events-none select-none
+          drop-shadow-[2px_2px_4px_rgba(0,0,0,0.1)]
+          z-[15]                          /* ← z-indexを上げる */
+        "
+      />
+
+      {/* 🌊 背景モチーフ（川） */}
+      <motion.img
+        src="/kawa.png"
+        alt="川のモチーフ"
+        initial={{ opacity: 0, scale: 0.9, y: 10 }}
+        whileInView={{ opacity: 1, scale: 1, y: 0 }}
+        transition={{ duration: 0.9, delay: 0.4 }}
+        viewport={{ once: true }}
+        animate={{
+          y: [0, -5, 5, 0],
+        }}
+        className="
+          absolute
+          right-[29%] bottom-[-20px]        /* スマホ用位置 */
+          md:right-[46.3%] md:bottom-[-24px]  /* PC用位置 */
+          w-[171px] md:w-[191px]
+          opacity-95
+          pointer-events-none select-none
+          drop-shadow-[2px_2px_6px_rgba(0,0,0,0.1)]
+          z-[15]                             /* ← こちらも前へ */
+        "
+      />
+
+      {/* 🦖 背景モチーフ（怪獣） */}
+      <motion.img
+        src="/oi.png"
         alt="怪獣モチーフ"
         className="
           absolute
-          right-[2.5%] md:right-[9%]
-          bottom-[-40px] md:bottom-[-120px]
-          w-[140px] md:w-[240px]
-          opacity-100 md:opacity-100
-          rotate-[8deg] md:rotate-[10deg]
+          right-[2.5%] md:right-[12%]
+          bottom-[-40px] md:bottom-[-46px]
+          w-[140px] md:w-[275px]
+          opacity-100
+          rotate-[0deg] md:rotate-[0deg]
           pointer-events-none
+          z-[16]                             /* ← 山・川より前 */
         "
         animate={{
-          x: [0, 10, -10, 0],
-          rotate: [8, 10, 6, 8],
+          x: [2, 1, -1, -2],
+          rotate: [2, 6, 6, 2],
         }}
         transition={{
-          duration: 5,
+          duration: 0.25,
           repeat: Infinity,
           ease: 'easeInOut',
         }}
       />
-      
-      {/* タイトルと一覧ボタン（スマホで縦並び配置） */}
-      <div
-        className="relative z-10 w-full max-w-[1100px] mx-auto px-6 flex flex-col md:grid md:grid-cols-[1fr_auto_1fr] items-center md:gap-0 gap-3"
-      >
+
+      {/* タイトルと一覧ボタン */}
+      <div className="relative z-[20] w-full max-w-[1100px] mx-auto px-6 flex flex-col md:grid md:grid-cols-[1fr_auto_1fr] items-center md:gap-0 gap-6">
         <h2 className="text-[30px] md:text-[38px] font-bold text-[#333] leading-tight text-center md:col-start-2 md:justify-self-center">
           お知らせ
         </h2>
