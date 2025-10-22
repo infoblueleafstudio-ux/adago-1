@@ -27,28 +27,19 @@ export default function Hero({ useImageHeadline = true }: Props) {
         <div
           className="
             w-full h-full 
-            bg-[url('/toto.jpg')] bg-cover bg-bottom bg-no-repeat
+            bg-[url('/toto.jpg')] bg-no-repeat
+            bg-cover
+            bg-[center_70%] md:bg-[center_bottom]
           "
           style={{
-            backgroundPosition: 'center bottom',
-            backgroundAttachment: 'scroll', // ✅ iOSパフォーマンス対策
+            backgroundAttachment: 'scroll',
           }}
         />
       </div>
 
-      {/* フローティングモチーフ */}
-      <FloatingMotifs
-        items={[
-          { type: 'waves', color: '#f2c94c', top: '20%', left: '8%', anim: 'drift', size: 36, rotate: 0 },
-          { type: 'raindrops', color: '#7c3aed', top: '28%', left: '88%', anim: 'bob', size: 28 },
-          { type: 'flower', color: '#ef4444', top: '62%', left: '10%', anim: 'float', size: 28 },
-          { type: 'leaf', color: '#22c55e', top: '68%', left: '80%', anim: 'float', size: 26 },
-        ]}
-      />
-
       {/* 背景モチーフ（愛宕風） */}
       <FloatingIcon
-        src="/leaf1.svg"
+        src="/leaf5.svg"
         alt="葉っぱ"
         className="absolute left-[5%] bottom-[15%] w-[60px] md:w-[80px] opacity-80"
         delay={0.2}
@@ -60,8 +51,7 @@ export default function Hero({ useImageHeadline = true }: Props) {
         className="
           absolute right-[4%] top-[15%] 
           w-[120px] sm:w-[150px] md:w-[180px] 
-          opacity-75
-        "
+          opacity-75 "
         delay={0.4}
         float
         rotate
