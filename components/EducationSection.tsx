@@ -7,22 +7,44 @@ export default function EducationSection() {
   return (
     <section className="relative z-10 w-full bg-[#ffffff] py-8 md:py-12 overflow-visible">
 
-      {/* タイトル */}
-      <motion.h3
-        initial={{ opacity: 0, y: 15 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: 0.2 }}
-        viewport={{ once: true }}
-        className="
-          text-[26px] md:text-[42px] font-bold 
-          tracking-[0.08em] text-[#333]
-          text-center
-          mb-2 md:mb-3
-          -mt-4 md:-mt-12        /* ← タイトルを点線ガイドに近づける */
-        "
-      >
-        教育と保育
-      </motion.h3>
+      {/* 教育と保育タイトルブロック（nemu.png装飾付き） */}
+      <div className="relative w-fit mx-auto mb-2 md:mb-3">
+        {/* スマホ・PC共通でふわっと出現 */}
+        <motion.img
+          src="/nemu.png"
+          alt="ねむの木の飾り"
+          initial={{ opacity: 0, y: -10, x: -10 }}
+          whileInView={{ opacity: 1, y: 0, x: 0 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          viewport={{ once: true }}
+          className="
+            absolute
+            z-10
+            left-[-100px] top-[-10px]   /* スマホ用：タイトルの左上に配置 */
+            md:left-[-720px] md:top-[-80px]   /* PC用：やや外側・上に移動 */
+            w-[100px] md:w-[380px]     /* サイズ：スマホ小さめ、PCは広め */
+            opacity-90
+            pointer-events-none select-none
+            drop-shadow-[2px_2px_4px_rgba(0,0,0,0.15)]
+          "
+        />
+
+        {/* 教育と保育タイトル */}
+        <motion.h3
+          initial={{ opacity: 0, y: 15 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          viewport={{ once: true }}
+          className="
+            text-[26px] md:text-[42px] font-bold 
+            tracking-[0.08em] text-[#333]
+            text-center
+            -mt-4 md:-mt-12
+          "
+        >
+          教育と保育
+        </motion.h3>
+      </div>
 
         {/* 教育と保育のメイン画像（スマホ：丸型／PC：カプセル型） */}
         <div className="relative w-[88vw] max-w-[1500px] mx-auto mt-2 md:mt-4 mb-12 md:mb-16 overflow-visible">
@@ -160,7 +182,7 @@ export default function EducationSection() {
 
         {/* 🟢 園の理念 CTAボタン（スマホでもキャラ表示） */}
         <div className="absolute left-1/2 bottom-[-45px] -translate-x-1/2 z-30 flex flex-col items-center">
-          {/* おじぎキャラ（スマホ対応） */}
+          {/* おじぎキャラ */}
           <motion.img
             src="/icons/ojigi.png"
             alt="キャラクター"
@@ -174,7 +196,7 @@ export default function EducationSection() {
               mb-[-5px] z-20 select-none pointer-events-none
             "
           />
-
+          {/* ボタン */}
           <motion.a
             href="/education/philosophy"
             initial={{ opacity: 0, y: 20 }}
@@ -193,6 +215,25 @@ export default function EducationSection() {
             園の理念
           </motion.a>
         </div>
+
+        {/* 🌸 花の飾り（園の理念ボタンの下／右寄せ） */}
+        <motion.img
+          src="/hana.png"
+          alt="花の飾り"
+          initial={{ opacity: 0, scale: 0.9, y: 10 }}
+          whileInView={{ opacity: 1, scale: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.6 }}
+          viewport={{ once: true }}
+          className="
+            absolute
+            right-[-5%] bottom-[-55px]     /* ← ボタンより下＆右寄せ */
+            md:right-[-8%] md:bottom-[-120px]
+            w-[100px] md:w-[180px]
+            opacity-90
+            pointer-events-none select-none
+            drop-shadow-[2px_2px_4px_rgba(0,0,0,0.15)]
+          "
+        />
       </div>
 
       {/* メニュー */}
@@ -203,55 +244,69 @@ export default function EducationSection() {
         viewport={{ once: true }}
         className="
           flex justify-center items-center flex-wrap
-          mt-[35px] mb-[35px]
+          mt-[65px] md:mt-[40px] mb-[1px] md:mb-[35px]
           text-[16px] md:text-[18px] font-bold tracking-[0.05em]
-          text-[#333] space-x-0 md:space-x-1
+          text-[#333]
         "
       >
-        <>
-          {/* 左端の区切り線 */}
-          <span className="
-              mx-1 h-[25px] w-[1.5px] bg-[#555] opacity-60
-            translate-y-[1px]  /* ← テキスト中央に合わせるため微調整 */
-          "></span>
-          
-          {[
-            { label: '園での1日', href: '/day' },
-            { label: '年間行事', href: '/events' },
-            { label: '知育', href: '/education' },
-            { label: '体育', href: '/sports' },
-            { label: '食育', href: '/food' },
-            { label: '先生の紹介', href: '/teachers' },
-          ].map((item, i, arr) => (
-            <div key={i} className="flex items-center">
-              {/* メニューリンク */}
+        {/* スマホ表示：2列グリッド風（ボタン型） */}
+        <div className="block md:hidden w-full px-6">
+          <div className="grid grid-cols-2 gap-[10px]">
+            {[
+              { label: '園での1日', href: '/day' },
+              { label: '年間行事', href: '/events' },
+              { label: '知育', href: '/education' },
+              { label: '体育', href: '/sports' },
+              { label: '食育', href: '/food' },
+              { label: '先生の紹介', href: '/teachers' },
+            ].map((item, i) => (
               <motion.a
+                key={i}
                 href={item.href}
-                whileHover={{ scale: 1.05 }}
+                whileHover={{ scale: 1.04 }}
                 className="
-                  text-black hover:text-[#696969]
-                  transition-all duration-300 px-3
+                  block text-center py-[10px]
+                  rounded-[15px]
+                  bg-[#eee8aa] border border-[#b4d0b8]
+                  text-[#333]
+                  shadow-sm hover:bg-[#d8ebdb]
+                  transition-all duration-300
                 "
               >
                 {item.label}
               </motion.a>
+            ))}
+          </div>
+        </div>
 
-              {/* 区切り線（最後にも表示） */}
-              {i < arr.length - 1 && (
-                <span className="
-                    mx-1 h-[25px] w-[1.5px] bg-[#555] opacity-60
-                  translate-y-[1px]  /* ← テキスト中央に合わせるため微調整 */
-                "></span>
-              )}
-            </div>
-          ))}
-          
-          {/* 右端の区切り線 */}
-          <span className="
-              mx-1 h-[25px] w-[1.5px] bg-[#555] opacity-60
-            translate-y-[1px]  /* ← テキスト中央に合わせるため微調整 */
-          "></span>
-        </>
+        {/* PC表示：既存の横並びライン型 */}
+        <div className="hidden md:flex justify-center items-center flex-wrap text-[16px] md:text-[18px] font-bold tracking-[0.05em] text-[#333] space-x-0 md:space-x-1">
+          <>
+            <span className="mx-1 h-[25px] w-[1.5px] bg-[#555] opacity-60 translate-y-[1px]" />
+            {[
+              { label: '園での1日', href: '/day' },
+              { label: '年間行事', href: '/events' },
+              { label: '知育', href: '/education' },
+              { label: '体育', href: '/sports' },
+              { label: '食育', href: '/food' },
+              { label: '先生の紹介', href: '/teachers' },
+            ].map((item, i, arr) => (
+              <div key={i} className="flex items-center">
+                <motion.a
+                  href={item.href}
+                  whileHover={{ scale: 1.05 }}
+                  className="text-black hover:text-[#696969] transition-all duration-300 px-3"
+                >
+                  {item.label}
+                </motion.a>
+                {i < arr.length - 1 && (
+                  <span className="mx-1 h-[25px] w-[1.5px] bg-[#555] opacity-60 translate-y-[1px]" />
+                )}
+              </div>
+            ))}
+            <span className="mx-1 h-[25px] w-[1.5px] bg-[#555] opacity-60 translate-y-[1px]" />
+          </>
+        </div>
       </motion.div>
     </section>
   )
