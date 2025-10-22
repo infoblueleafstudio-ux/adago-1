@@ -11,74 +11,83 @@ type Props = {
 
 export default function Hero({ useImageHeadline = true }: Props) {
   return (
-    <motion.section 
-      className="relative z-10 w-full h-screen flex items-center justify-center overflow-visible bg-white"
+    <motion.section
+      className="
+        relative z-10 w-full 
+        h-[100svh] md:h-screen       /* ✅ iPhone対応: svhで安全に全高 */
+        flex items-center justify-center 
+        overflow-hidden bg-white
+      "
       initial={{ y: 30 }}
       animate={{ y: 0 }}
-      transition={{ duration: 1.6, ease: "easeOut" }}
+      transition={{ duration: 1.6, ease: 'easeOut' }}
     >
-      {/* 背景画像（全幅・カバー） - パララックス効果適用 */}
+      {/* 背景画像（モバイル最適化） */}
       <div className="absolute inset-0 -z-10">
-        <div 
-          className="relative w-full h-full bg-[url('/toto.jpg')] bg-cover bg-bottom bg-no-repeat parallax-hero" 
+        <div
+          className="
+            w-full h-full 
+            bg-[url('/toto.jpg')] bg-cover bg-bottom bg-no-repeat
+          "
           style={{
-            backgroundImage: "url('/toto.jpg')",
-            backgroundSize: 'cover',
             backgroundPosition: 'center bottom',
-            backgroundAttachment: 'fixed',
+            backgroundAttachment: 'scroll', // ✅ iOSパフォーマンス対策
           }}
         />
-        {/** <div className="absolute inset-0 bg-white/10 backdrop-blur-[2px]" /> **/}
       </div>
 
       {/* フローティングモチーフ */}
-      <FloatingMotifs items={[
-        { type:'waves', color:'#f2c94c', top:'20%', left:'8%', anim:'drift', size:46, rotate:0 },
-        { type:'raindrops', color:'#7c3aed', top:'28%', left:'90%', anim:'bob', size:40 },
-        { type:'flower', color:'#ef4444', top:'58%', left:'12%', anim:'float', size:36 },
-        { type:'leaf', color:'#22c55e', top:'65%', left:'82%', anim:'float', size:34 },
-      ]} />
+      <FloatingMotifs
+        items={[
+          { type: 'waves', color: '#f2c94c', top: '20%', left: '8%', anim: 'drift', size: 36, rotate: 0 },
+          { type: 'raindrops', color: '#7c3aed', top: '28%', left: '88%', anim: 'bob', size: 28 },
+          { type: 'flower', color: '#ef4444', top: '62%', left: '10%', anim: 'float', size: 28 },
+          { type: 'leaf', color: '#22c55e', top: '68%', left: '80%', anim: 'float', size: 26 },
+        ]}
+      />
 
-      {/* 愛宕幼稚園風の背景モチーフ */}
-      <FloatingIcon 
-        src="/leaf1.svg" 
-        alt="葉っぱ" 
-        className="absolute left-[5%] bottom-[15%] w-[80px] opacity-80" 
+      {/* 背景モチーフ（愛宕風） */}
+      <FloatingIcon
+        src="/leaf1.svg"
+        alt="葉っぱ"
+        className="absolute left-[5%] bottom-[15%] w-[60px] md:w-[80px] opacity-80"
         delay={0.2}
-        float={true}
+        float
       />
-      <FloatingIcon 
-        src="/tori2.svg" 
-        alt="鳥" 
-        className="absolute right-[8%] top-[20%] w-[180px] opacity-75" 
+      <FloatingIcon
+        src="/tori1.svg"
+        alt="鳥"
+        className="
+          absolute right-[4%] top-[15%] 
+          w-[120px] sm:w-[150px] md:w-[180px] 
+          opacity-75
+        "
         delay={0.4}
-        float={true}
-        rotate={true}
+        float
+        rotate
       />
 
-      {/* キャッチコピー（中央寄せ、フェード＋ゆらゆら浮遊） */}
+      {/* キャッチコピー */}
       <div className="relative flex flex-col justify-center items-center text-center px-6 w-full">
-        {/* --- フェードイン専用 --- */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 1.2, ease: "easeOut", delay: 0.6 }}
+          transition={{ duration: 1.2, ease: 'easeOut', delay: 0.6 }}
           className="mx-auto max-w-[780px] mt-6"
         >
-          {/* --- ゆらゆら専用 --- */}
           <motion.div
-            animate={{ y: [0, -15, 0] }}
+            animate={{ y: [0, -12, 0] }}
             transition={{
-              duration: 6,
-              ease: "easeInOut",
+              duration: 5,
+              ease: 'easeInOut',
               repeat: Infinity,
             }}
           >
             <Image
               src="/ctt.svg"
               alt="キャッチコピー"
-              width={1100}
-              height={360}
+              width={900} // ✅ サイズ軽減
+              height={300}
               priority
               className="w-full h-auto object-contain hero-title"
             />
