@@ -95,7 +95,7 @@ export default function AnnouncementSection() {
 
       {/* タイトルと一覧ボタン */}
       <div className="relative z-[20] w-full max-w-[1100px] mx-auto px-6 flex flex-col md:grid md:grid-cols-[1fr_auto_1fr] items-center md:gap-0 gap-6">
-        <h2 className="text-[30px] md:text-[38px] font-bold text-[#333] leading-tight text-center md:col-start-2 md:justify-self-center">
+        <h2 className="text-[30px] md:text-[38px] font-[450] text-[#333] leading-tight text-center md:col-start-2 md:justify-self-center">
           お知らせ
         </h2>
 

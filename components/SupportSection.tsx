@@ -12,7 +12,7 @@ export default function SupportSection() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="text-[20px] md:text-[40px] font-bold text-[#333] mb-8 md:mb-10"
+          className="text-[18px] md:text-[40px] font-[450] text-[#8b4513] md:text-[#333] mb-[6.5px] md:mb-10"
         >
           こどもの森幼稚園は子育てを応援しています
         </motion.h2>
@@ -70,7 +70,7 @@ export default function SupportSection() {
               <div className="mt-3 md:mt-5 text-center w-full relative">
                 {i === 0 ? (
                   <>
-                    <h3 className="text-[18px] md:text-[19px] font-bold text-[#000] mb-1.5 md:mb-2">
+                    <h3 className="text-[18px] md:text-[19px] font-[450] text-[#000] mb-1.5 md:mb-2">
                       子育て支援
                     </h3>
                     <p className="text-[14px] md:text-[15px] text-[#555] leading-relaxed mb-2.5 md:mb-3">
@@ -104,7 +104,7 @@ export default function SupportSection() {
                   </>
                 ) : (
                   <>
-                    <h3 className="text-[18px] md:text-[19px] font-bold text-[#000] mb-1.5 md:mb-2">
+                    <h3 className="text-[18px] md:text-[19px] font-[450] text-[#000] mb-1.5 md:mb-2">
                       よくあるご質問
                     </h3>
                     <p className="text-[14px] md:text-[15px] text-[#555] leading-relaxed mb-2.5 md:mb-3">

@@ -209,7 +209,7 @@ const Navigation = () => {
                 className="rounded-full object-contain h-[48px] w-[56px]"
               />
               <div className="hidden sm:flex flex-col">
-                <span className="text-2xl font-bold text-atago-blue">こどもの森 幼稚園</span>
+                <span className="text-2xl font-[450] text-atago-blue">こどもの森 幼稚園</span>
                 <span className="text-sm text-gray-500">KODOMO NO MORI KINDERGARTEN</span>
               </div>
             </Link>

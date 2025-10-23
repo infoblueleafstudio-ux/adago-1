@@ -1,15 +1,37 @@
-import './globals.css';
-import type { Metadata } from 'next';
-import { Noto_Sans_JP } from 'next/font/google';
-import Navigation from '@/components/Navigation';
-import Footer from '@/components/Footer';
-import BackgroundShapes from '@/components/BackgroundShapes';
+import './globals.css'
+import type { Metadata } from 'next'
+import { Yusei_Magic, RocknRoll_One, Stick } from 'next/font/google'
+import Navigation from '@/components/Navigation'
+import Footer from '@/components/Footer'
+import BackgroundShapes from '@/components/BackgroundShapes'
 
-const notoSansJP = Noto_Sans_JP({ 
+// 本文用（手書き風）
+const yuseiMagic = Yusei_Magic({
   subsets: ['latin'],
-  weight: ['400', '500', '700'],
-  variable: '--font-noto-sans-jp'
-});
+  weight: ['400'],
+  variable: '--font-yusei-magic',
+})
+
+// メイン見出し用（手書き風）
+const yuseiMagicHeading = Yusei_Magic({
+  subsets: ['latin'],
+  weight: ['400'],
+  variable: '--font-yusei-magic-heading',
+})
+
+// サブ見出し・ボタン用（やや太めで安定感）
+const rocknRoll = RocknRoll_One({
+  subsets: ['latin'],
+  weight: ['400'],
+  variable: '--font-rocknroll-one',
+})
+
+// 遊び要素用（軽めのアクセント）
+const stick = Stick({
+  subsets: ['latin'],
+  weight: ['400'],
+  variable: '--font-stick',
+})
 
 export const metadata: Metadata = {
   title: {
@@ -75,7 +97,15 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ja">
-      <body className={`${notoSansJP.className} bg-atago-bg text-atago-text`}>
+      <body
+        className={`
+          ${yuseiMagic.variable}
+          ${yuseiMagicHeading.variable}
+          ${rocknRoll.variable}
+          ${stick.variable}
+          font-sans bg-atago-bg text-atago-text
+        `}
+      >
         {/* グローバル固定背景SVG */}
         <BackgroundShapes />
         

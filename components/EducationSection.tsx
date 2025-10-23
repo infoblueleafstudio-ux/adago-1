@@ -36,7 +36,7 @@ export default function EducationSection() {
           transition={{ duration: 0.6, delay: 0.3 }}
           viewport={{ once: true }}
           className="
-            text-[26px] md:text-[42px] font-bold 
+            text-[26px] md:text-[42px] font-[450] 
             tracking-[0.08em] text-[#333]
             text-center
             -mt-4 md:-mt-12
@@ -99,7 +99,7 @@ export default function EducationSection() {
               viewport={{ once: true }}
               className="
                 absolute z-30   /* ← z-index強化 */
-                top-[1%] right-[5%]
+                top-[-2%] right-[6.2%]
                 flex md:hidden flex-col items-start gap-[4px]
                 pointer-events-none
               "
@@ -118,8 +118,8 @@ export default function EducationSection() {
                 <span
                   key={i}
                   className="
-                    font-bold
-                    text-[12px]
+                    font-[450]
+                    text-[20px]
                     text-white
                     bg-black/80
                     rounded-md
@@ -144,7 +144,7 @@ export default function EducationSection() {
           viewport={{ once: true }}
           className="
             absolute z-20
-            top-[-50px] sm:top-[-60px] md:top-[-50px] right-[1%]
+            top-[-50px] sm:top-[-60px] md:top-[-50px] right-[2.2%]
             hidden md:flex flex-col items-start gap-[8px]
             pointer-events-none
           "
@@ -163,8 +163,8 @@ export default function EducationSection() {
             <span
               key={i}
               className="
-                font-bold
-                text-[20px] sm:text-[24px] md:text-[30px]
+                font-[450]
+                text-[25px] sm:text-[24px] md:text-[35px]
                 text-white
                 bg-black/80
                 rounded-md
@@ -204,7 +204,7 @@ export default function EducationSection() {
             transition={{ duration: 0.6, delay: 0.9 }}
             viewport={{ once: true }}
             className="
-              bg-[#84b78e] text-white font-bold text-[16px] md:text-[20px]
+              bg-[#84b78e] text-white font-[450] text-[16px] md:text-[20px]
               px-8 py-3 rounded-full shadow-md
               border-[2px] border-[#3cb371]
               hover:bg-[#006400] hover:scale-105 hover:text-[#ffefd5]
@@ -244,8 +244,8 @@ export default function EducationSection() {
         viewport={{ once: true }}
         className="
           flex justify-center items-center flex-wrap
-          mt-[65px] md:mt-[80px] mb-[-3px] md:mb-[1px]
-          text-[16px] md:text-[18px] font-bold tracking-[0.05em]
+          mt-[65px] md:mt-[80px] mb-[-3px] md:mb-[-38px]
+          text-[16px] md:text-[18px] font-[450] tracking-[0.05em]
           text-[#333]
         "
       >
@@ -280,7 +280,7 @@ export default function EducationSection() {
         </div>
 
         {/* PC表示：既存の横並びライン型 */}
-        <div className="hidden md:flex justify-center items-center flex-wrap text-[16px] md:text-[18px] font-bold tracking-[0.05em] text-[#333] space-x-0 md:space-x-1">
+        <div className="hidden md:flex justify-center items-center flex-wrap text-[16px] md:text-[18px] font-[450] tracking-[0.05em] text-[#333] space-x-0 md:space-x-1">
           <>
             <span className="mx-1 h-[25px] w-[1.5px] bg-[#555] opacity-60 translate-y-[1px]" />
             {[

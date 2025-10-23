@@ -6,6 +6,12 @@
 
 @layer base {
   :root {
+    /* フォント変数 */
+    --font-heading: var(--font-yusei-magic-heading);
+    --font-subheading: var(--font-rocknroll-one);
+    --font-body: var(--font-yusei-magic);
+    --font-decorative: var(--font-stick);
+    
     /* 仕様に基づくカスタムカラー */
     --brand-green: #3a8d6d;
     --brand-orange: #f3a26c;
@@ -45,17 +51,29 @@
   
   body {
     @apply bg-background text-foreground antialiased;
-    font-family: 'Noto Sans JP', sans-serif;
+    font-family: var(--font-body), sans-serif;
     font-size: 16px;
     line-height: 1.8;
     color: hsl(var(--foreground));
   }
 
-  h1, h2, h3, h4, h5, h6 {
+  /* メインタイトル・大見出し */
+  h1, h2, h3 {
+    font-family: var(--font-heading), sans-serif;
+    letter-spacing: 0.03em;
     @apply font-bold;
-    letter-spacing: -0.025em;
-    line-height: 1.4;
-    color: hsl(var(--foreground));
+  }
+
+  /* サブタイトル・ボタン・CTAなど */
+  h4, h5, .subheading, .cta-text {
+    font-family: var(--font-subheading), sans-serif;
+    @apply font-bold;
+  }
+
+  /* 手書き風を出したい要素 */
+  .handwritten {
+    font-family: var(--font-heading), sans-serif;
+    letter-spacing: 0.05em;
   }
 
   /* Hero内のタイトル用Yusei Magicフォント */
@@ -388,4 +406,21 @@
 
 .floating-element {
   animation: float 9s ease-in-out infinite;
+}
+
+/* フォント変数の強制適用 */
+html, body {
+  font-family: var(--font-yusei-magic), sans-serif !important;
+}
+
+h1, h2, .section-title {
+  font-family: var(--font-yusei-magic-heading), sans-serif !important;
+}
+
+h3, h4, .cta-text {
+  font-family: var(--font-rocknroll-one), sans-serif !important;
+}
+
+.decorative-text {
+  font-family: var(--font-stick), sans-serif !important;
 }

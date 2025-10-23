@@ -119,8 +119,8 @@ export default function AdmissionSection() {
       <div className="w-[88vw] max-w-[1500px] mx-auto px-6 pt-5 pb-2 md:pt-20">
         {/* タイトル */}
         <motion.h3
-          className="text-center text-[24px] md:text-[40px] font-bold text-[#333] 
-                     mt-5 md:mt-0 mb-6 md:mb-12 leading-tight"
+          className="text-center text-[24px] md:text-[40px] font-[450] text-[#333] 
+                     mt-[-17px] md:mt-[-38px] mb-6 md:mb-[20px] leading-tight"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.1 }}

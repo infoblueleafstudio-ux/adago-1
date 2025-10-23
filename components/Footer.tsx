@@ -45,7 +45,7 @@ const Footer = () => {
                 />
               </div>
               <div>
-                <h3 className="font-bold text-gray-800 text-lg md:text-xl">
+                <h3 className="font-[450] text-gray-800 text-lg md:text-xl">
                   こどもの森 幼稚園
                 </h3>
                 <p className="text-xs md:text-sm text-gray-600">
