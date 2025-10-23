@@ -46,6 +46,27 @@ export default function AnnouncementSection() {
           z-[15]                             /* ← こちらも前へ */
         "
       />
+       <motion.img
+        src="/honoo.png"
+        alt="honoo"
+        initial={{ opacity: 0, scale: 0.9, y: 10 }}
+        whileInView={{ opacity: 1, scale: 1, y: 0 }}
+        transition={{ duration: 0.9, delay: 0.4 }}
+        viewport={{ once: true }}
+        animate={{
+          y: [0, -5, 5, 0],
+        }}
+        className="
+          absolute
+          left-[6%] bottom-[50px]        /* スマホ用位置 */
+          md:left-[35%] md:bottom-[0px]  /* PC用位置 */
+          w-[80px] md:w-[130px]
+          opacity-95
+          pointer-events-none select-none
+          drop-shadow-[2px_2px_6px_rgba(0,0,0,0.1)]
+          z-[15]                             /* ← こちらも前へ */
+        "
+      />
 
       {/* 🦖 背景モチーフ（怪獣） */}
       <motion.img
