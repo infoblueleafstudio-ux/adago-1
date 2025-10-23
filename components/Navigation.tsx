@@ -197,7 +197,7 @@ const Navigation = () => {
         : 'bg-white'
     }`}>
       <div className="w-full px-10 lg:px-16">
-        <div className="flex justify-between items-center h-[84px]">
+      <div className="flex justify-between items-center h-[40px] md:h-[72px]">
           <div className="flex items-center w-full lg:w-auto justify-center lg:justify-start">
             <Link href="/" className="flex items-center space-x-3">
               <Image
@@ -295,15 +295,21 @@ const Navigation = () => {
             ))}
           </div>
 
-          {/* CTAボタン（お問い合わせ） */}
-          <div className="hidden lg:flex items-center">
-            <Link
-              href="/contact"
-              className="ml-10 px-6 py-[10px] rounded-full text-sm font-semibold text-white bg-gradient-to-r from-[#f9c87a] to-[#e6a64b] shadow-sm hover:opacity-90 transition-all duration-300 ease-out whitespace-nowrap"
-            >
-              お問い合わせ
-            </Link>
-          </div>
+{/* CTAボタン（お問い合わせ） */}
+<div className="hidden lg:flex items-center">
+  <Link
+    href="/contact"
+    className="
+      ml-10 px-[28px] py-[10px]
+      rounded-full text-[17px] font-semibold
+      text-white bg-gradient-to-r from-[#f9c87a] to-[#e6a64b]
+      shadow-md hover:opacity-90 transition-all duration-300 ease-out
+      whitespace-nowrap
+    "
+  >
+    お問い合わせ
+  </Link>
+</div>
 
           <div className="lg:hidden flex items-center">
             <button

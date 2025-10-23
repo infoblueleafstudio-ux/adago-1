@@ -39,17 +39,10 @@ export default function Hero({ useImageHeadline = true }: Props) {
 
       {/* 背景モチーフ*/}
       <FloatingIcon
-        src="/momiji.png"
-        alt="紅葉"
-        className="absolute left-[1%] bottom-[1%] md:left-[2%] md:bottom-[7%] w-[60px] md:w-[150px] opacity-80"
-        delay={0.2}
-        float
-      />
-      <FloatingIcon
         src="/sunsun.png"
         alt="太陽"
         className="
-          absolute right-[4%] top-[1%] md:right-[8%] md:top-[1%]
+          absolute right-[4%] top-[3%] md:right-[8%] md:top-[1%]
           w-[75px] md:w-[180px] 
           opacity-75 "
         delay={0.4}
@@ -57,7 +50,7 @@ export default function Hero({ useImageHeadline = true }: Props) {
         rotate
       />
            <FloatingIcon
-        src="/sun.png"
+        src="/hana3.png"
         alt="花"
         className="
           absolute left-[7%] top-[9%] md:left-[8%] md:top-[10%]
@@ -77,32 +70,36 @@ export default function Hero({ useImageHeadline = true }: Props) {
             transition={{ duration: 1.2, ease: 'easeOut', delay: 0.6 }}
             className="
               absolute
-              left-[54%] top-[35%] md:top-[15%]
+              left-[54%] top-[35%] md:top-[25.8%]
               -translate-x-1/2 -translate-y-1/2
-              md:left-[56%]
+              md:left-[52%] 
             "
           >
-            <motion.div
-              animate={{ y: [0, -12, 0] }}
-              transition={{
-                duration: 5,
-                ease: 'easeInOut',
-                repeat: Infinity,
-              }}
-            >
-              <Image
-                src="/ctt.svg"
-                alt="キャッチコピー"
-                width={900}
-                height={300}
-                priority
-                className="
-                  w-[88%] md:w-[83%]
-                  h-auto object-contain
-                  pointer-events-none select-none
-                "
-              />
-            </motion.div>
+<motion.div
+  animate={{
+    y: [0, -8, 0],          // 🌈 上下のゆらぎ
+    rotate: [-1.5, 1.5, -1.5], // 🌈 ほんのり角度でそよぐ
+    opacity: [1, 0.95, 1],  // ✨ 光のゆらぎ
+  }}
+  transition={{
+    duration: 5,            // ゆっくりリズム（自然に見せるコツ）
+    ease: 'easeInOut',
+    repeat: Infinity,
+  }}
+>
+  <Image
+    src="/ctt.svg"
+    alt="キャッチコピー"
+    width={900}
+    height={300}
+    priority
+    className="
+      w-[88%] md:w-[100%]
+      h-auto object-contain
+      pointer-events-none select-none
+    "
+  />
+</motion.div>
           </motion.div>
         </div>
       </div>

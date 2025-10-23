@@ -5,9 +5,9 @@ interface FloatingIconProps {
   src: string
   alt: string
   className?: string
-  delay?: number
-  float?: boolean // ← 追加: ふわふわ動作ON/OFF
-  rotate?: boolean // ← 追加: ゆるやかな回転ON/OFF
+  delay?: number // ← 各アイコンごとにずらす時間
+  float?: boolean
+  rotate?: boolean
 }
 
 export default function FloatingIcon({
@@ -22,21 +22,31 @@ export default function FloatingIcon({
     <motion.img
       src={src}
       alt={alt}
-      initial={{ opacity: 0, y: 10 }}
-      whileInView={{ opacity: 1, y: 0 }}
+      initial={{ opacity: 0, rotate: 0 }}
+      whileInView={{ opacity: 1 }}
       viewport={{ once: true }}
       animate={
         float
           ? {
-              y: [0, -10, 0], // 上下ふわふわ
-              rotate: rotate ? [0, 2, -2, 0] : 0 // 回転もオンなら軽くゆらぎ
+              rotate: [-6, 6, -8],
+              scale: rotate ? [1, 1.02, 1] : 1,
             }
           : {}
       }
       transition={{
-        y: { duration: 3, repeat: Infinity, ease: 'easeInOut' },
-        rotate: { duration: 6, repeat: Infinity, ease: 'easeInOut' },
-        opacity: { duration: 0.8, delay }
+        rotate: {
+          duration: 2.8,
+          repeat: Infinity,
+          ease: 'easeInOut',
+          delay, // ← ここを追加！
+        },
+        scale: {
+          duration: 4,
+          repeat: Infinity,
+          ease: 'easeInOut',
+          delay, // ← ここも追加！
+        },
+        opacity: { duration: 0.8, delay },
       }}
       className={`select-none pointer-events-none ${className}`}
     />
