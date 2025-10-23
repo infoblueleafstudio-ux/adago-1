@@ -5,23 +5,7 @@ import FloatingIcon from '@/components/ui/FloatingIcon'
 
 export default function SupportSection() {
   return (
-    <section className="w-full bg-[#ffffff] py-12 md:py-16 relative z-10 overflow-visible">
-      {/* 背景モチーフ */}
-      <FloatingIcon 
-        src="/icons/bird.svg" 
-        alt="小鳥" 
-        className="absolute right-[8%] top-[15%] w-[65px] opacity-80" 
-        delay={0.2}
-        float={true}
-        rotate={true}
-      />
-      <FloatingIcon 
-        src="/icons/drop.svg" 
-        alt="水滴" 
-        className="absolute left-[5%] bottom-[25%] w-[55px] opacity-75" 
-        delay={0.4}
-        float={true}
-      />
+    <section className="w-full bg-[#ffffff] pt-5 pb-2 md:py-16 relative z-10 overflow-visible">
       
       <div className="relative mx-auto w-[88vw] max-w-[1500px] text-center">
         {/* 見出し */}

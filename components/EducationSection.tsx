@@ -244,7 +244,7 @@ export default function EducationSection() {
         viewport={{ once: true }}
         className="
           flex justify-center items-center flex-wrap
-          mt-[65px] md:mt-[40px] mb-[1px] md:mb-[35px]
+          mt-[65px] md:mt-[80px] mb-[-3px] md:mb-[1px]
           text-[16px] md:text-[18px] font-bold tracking-[0.05em]
           text-[#333]
         "
