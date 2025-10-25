@@ -77,12 +77,12 @@ export default function Hero({ useImageHeadline = true }: Props) {
           >
 <motion.div
   animate={{
-    y: [0, -8, 0],          // 🌈 上下のゆらぎ
-    rotate: [-1.5, 1.5, -1.5], // 🌈 ほんのり角度でそよぐ
-    opacity: [1, 0.95, 1],  // ✨ 光のゆらぎ
+    y: [0, -8, 0],
+    rotate: [-1.5, 1.5, -1.5],
+    opacity: [1, 0.95, 1],
   }}
   transition={{
-    duration: 5,            // ゆっくりリズム（自然に見せるコツ）
+    duration: 5,
     ease: 'easeInOut',
     repeat: Infinity,
   }}
@@ -90,12 +90,11 @@ export default function Hero({ useImageHeadline = true }: Props) {
   <Image
     src="/ctt.svg"
     alt="キャッチコピー"
-    width={900}
-    height={300}
+    fill
     priority
     className="
-      w-[88%] md:w-[100%]
-      h-auto object-contain
+      object-contain object-top md:object-center
+      w-auto h-auto
       pointer-events-none select-none
     "
   />
