@@ -73,32 +73,35 @@ export default function Hero({ useImageHeadline = true }: Props) {
               left-[54%] top-[35%] md:top-[25.8%]
               -translate-x-1/2 -translate-y-1/2
               md:left-[52%] 
+              w-[240px] h-[160px]
+              md:w-[720px] md:h-[460px]
             "
           >
-<motion.div
-  animate={{
-    y: [0, -8, 0],
-    rotate: [-1.5, 1.5, -1.5],
-    opacity: [1, 0.95, 1],
-  }}
-  transition={{
-    duration: 5,
-    ease: 'easeInOut',
-    repeat: Infinity,
-  }}
->
-  <Image
-    src="/ctt.svg"
-    alt="キャッチコピー"
-    fill
-    priority
-    className="
-      object-contain object-top md:object-center
-      w-auto h-auto
-      pointer-events-none select-none
-    "
-  />
-</motion.div>
+            <motion.div
+              className="relative h-full w-full"
+              animate={{
+                y: [0, -8, 0],
+                rotate: [-1.5, 1.5, -1.5],
+                opacity: [1, 0.95, 1],
+              }}
+              transition={{
+                duration: 5,
+                ease: 'easeInOut',
+                repeat: Infinity,
+              }}
+            >
+              <Image
+                src="/ctt.svg"
+                alt="キャッチコピー"
+                fill
+                priority
+                sizes="(min-width: 768px) 40vw, 80vw"
+                className="
+                  object-contain object-top md:object-center
+                  pointer-events-none select-none
+                "
+              />
+            </motion.div>
           </motion.div>
         </div>
       </div>
